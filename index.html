@@ -1,0 +1,1151 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+
+<title>شقق إسكندرية</title>
+<meta name="description" content="شقق غير مفروشة في إسكندرية حتى ١٥٬٠٠٠ جنيه شهرياً، من إعلانات حقيقية مسجلة في Google Sheets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;700&family=Cairo:wght@600;700;800&display=swap">
+<style>
+/* Layout: the Corniche as the hero (sea on top, real coordinates rotated so the coast runs flat), sticky filter rail, photo cards below */
+:root{
+  --bg:#eef3f3;--surface:#ffffff;--ink:#10232c;--muted:#58707a;--line:#d6e2e4;
+  --sea:#0f5379;--sea-soft:#d3e8ef;--tram:#f0b429;--tram-ink:#3a2a00;
+  --new:#167a52;--new-soft:#dcf1e7;--near:#b4581a;--near-soft:#fbe8da;--warn:#9a3412;--warn-soft:#fde4d6;
+  --land:#f3f6f2;--park:#d6e9cc;--cem:#dfe5da;--sand:#f2e8c8;--campus:#ebe5f0;--hosp:#f6e0df;--road-major:#f6cf7c;--road-mid:#fde7b2;--case:#c3cec9;--rail:#93a2a8;--road:#ffffff;--road-edge:#d3dcd8;--lbl:#3d5560;--hero-a:#0b4566;--hero-b:#1b7fa8;--hero-ink:#ffffff;--hero-soft:rgba(255,255,255,.14);--ease:cubic-bezier(.2,.8,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);--shadow:0 1px 2px rgba(16,35,44,.06),0 8px 24px -12px rgba(16,35,44,.18);
+  --f-display:"Cairo","IBM Plex Sans Arabic",Tahoma,sans-serif;--on-sea:#ffffff;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a1419;--surface:#111f27;--ink:#e4eef0;--muted:#8ea3ab;--line:#21353f;
+  --sea:#4c9fcc;--sea-soft:#13303e;--tram:#f0b429;--tram-ink:#2b1f00;
+  --new:#4cc68f;--new-soft:#123327;--near:#f0955a;--near-soft:#3a2214;--warn:#fb9a6c;--warn-soft:#3b1d10;--land:#0e1a21;--park:#13281d;--cem:#16231c;--sand:#29251a;--campus:#1c1f2d;--hosp:#2a1b20;--road-major:#6d5522;--road-mid:#4b4027;--case:#071017;--rail:#566a72;--on-sea:#06202e;--road:#26404c;--road-edge:#0a141a;--lbl:#9fb6bf;--hero-a:#0a2230;--hero-b:#123e57;--hero-ink:#e4eef0;--hero-soft:rgba(255,255,255,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a1419;--surface:#111f27;--ink:#e4eef0;--muted:#8ea3ab;--line:#21353f;
+  --sea:#4c9fcc;--sea-soft:#13303e;--tram:#f0b429;--tram-ink:#2b1f00;
+  --new:#4cc68f;--new-soft:#123327;--near:#f0955a;--near-soft:#3a2214;--warn:#fb9a6c;--warn-soft:#3b1d10;--land:#0e1a21;--park:#13281d;--cem:#16231c;--sand:#29251a;--campus:#1c1f2d;--hosp:#2a1b20;--road-major:#6d5522;--road-mid:#4b4027;--case:#071017;--rail:#566a72;--on-sea:#06202e;--road:#26404c;--road-edge:#0a141a;--lbl:#9fb6bf;--hero-a:#0a2230;--hero-b:#123e57;--hero-ink:#e4eef0;--hero-soft:rgba(255,255,255,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);color-scheme:dark}
+
+*{box-sizing:border-box}
+html{direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sea);outline-offset:2px;border-radius:6px}
+.num{font-variant-numeric:tabular-nums}
+
+header.top{padding-block:22px 10px}
+.brand{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+.brand h1 span{color:var(--sea)}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.status{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;color:var(--muted);white-space:nowrap;text-decoration:none}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--tram)}
+.pill.live .dot{background:var(--new)}
+.pill.err .dot{background:var(--warn)}
+a.pill:hover{border-color:var(--sea);color:var(--ink)}
+.refresh{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:999px;border:1px solid var(--sea);background:var(--sea);color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+.refresh svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.refresh[aria-busy="true"] svg{animation:spin .9s linear infinite}
+.refresh:disabled{opacity:.7;cursor:progress}
+@keyframes spin{to{transform:rotate(-360deg)}}
+.msg{margin:8px 0 0;font-size:13px;color:var(--muted)}
+.msg.err{color:var(--warn)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-block:14px 16px}
+.stat{background:var(--surface);padding:12px 14px;min-width:0}
+.stat b{display:block;font-size:22px;font-weight:700;line-height:1.2}
+.stat small{color:var(--muted);font-size:12.5px}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.mapcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.maphead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.maphead h2{margin:0;font-size:16px;font-weight:600}
+.maphead small{color:var(--muted);font-size:12.5px}
+.mapwrap{position:relative;isolation:isolate}
+#map{height:420px;width:100%;background:var(--land);transition:height .25s}
+#map.tall{height:min(78vh,720px)}
+.mapwrap.full{position:fixed;inset:0;z-index:15;background:var(--land)}
+.mapwrap.full #map{height:100vh;height:100dvh}
+.mapwrap.full .mapbar{top:calc(10px + env(safe-area-inset-top,0px))}
+.mapwrap.full .searchhere{top:calc(12px + env(safe-area-inset-top,0px))}
+.mapwrap.full .mapnote{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.mapwrap.full .leaflet-control-attribution{margin-bottom:env(safe-area-inset-bottom,0px)!important}
+body.mapfull{overflow:hidden}
+#mClose{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.pop .im img{cursor:pointer}
+@media (max-width:640px){#map{height:360px}}
+.mapbar{position:absolute;z-index:900;top:10px;inset-inline-end:10px;display:flex;flex-direction:column;gap:6px}
+.mbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15);font-size:18px;line-height:1;padding:0}
+.mbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.mbtn:hover{border-color:var(--sea)}
+.searchhere{position:absolute;z-index:900;top:12px;left:50%;transform:translateX(-50%);border:0;border-radius:999px;padding:9px 16px;background:var(--ink);color:var(--surface);font-weight:600;font-size:13.5px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);white-space:nowrap}
+.mapnote{position:absolute;z-index:900;bottom:10px;inset-inline-start:10px;max-width:calc(100% - 20px);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:12px;color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;padding:10px 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);align-items:center}
+.legend .k{display:inline-flex;align-items:center;gap:6px}
+.legend .sw{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink)}
+.legend .sw.z{background:var(--sea);border-color:var(--sea);color:#fff}
+.legend .sw.n{border-style:dashed;border-color:var(--near)}
+
+/* Leaflet core (inlined: the page may only load stylesheets from Google Fonts) */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden;direction:ltr;font-family:var(--f-body);-webkit-tap-highlight-color:transparent;outline-offset:1px}
+.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+.leaflet-tile::selection{background:transparent}
+.leaflet-container img.leaflet-tile,.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-tile-pane img,.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important;width:auto;padding:0}
+.leaflet-container img.leaflet-tile{mix-blend-mode:normal}
+.leaflet-tile{filter:inherit;visibility:hidden}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-box{width:0;height:0;box-sizing:border-box;z-index:800}
+.leaflet-overlay-pane svg{-moz-user-select:none}
+.leaflet-pane{z-index:400}
+.leaflet-tile-pane{z-index:200}
+.leaflet-overlay-pane{z-index:400}
+.leaflet-shadow-pane{z-index:500}
+.leaflet-marker-pane{z-index:600}
+.leaflet-tooltip-pane{z-index:650}
+.leaflet-popup-pane{z-index:700}
+.leaflet-map-pane canvas{z-index:100}
+.leaflet-map-pane svg{z-index:200}
+.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto;float:left;clear:both}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-right .leaflet-control{float:right}
+.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}
+.leaflet-fade-anim .leaflet-popup{opacity:0;transition:opacity .2s linear}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}
+.leaflet-zoom-animated{transform-origin:0 0}
+svg.leaflet-zoom-animated{will-change:transform}
+.leaflet-zoom-anim .leaflet-zoom-animated{transition:transform .25s cubic-bezier(0,0,.25,1)}
+.leaflet-zoom-anim .leaflet-tile,.leaflet-pan-anim .leaflet-tile{transition:none}
+.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}
+.leaflet-interactive{cursor:pointer}
+.leaflet-grab{cursor:grab}
+.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-marker-draggable{cursor:grabbing}
+.leaflet-marker-icon,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}
+.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive{pointer-events:auto}
+.leaflet-touch-zoom{touch-action:pan-x pan-y}
+.leaflet-touch-drag{touch-action:pinch-zoom}
+.leaflet-touch-drag.leaflet-touch-zoom{touch-action:none}
+.leaflet-bar{border-radius:10px;border:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.15);overflow:hidden}
+.leaflet-bar a{display:block;width:38px;height:38px;line-height:36px;text-align:center;text-decoration:none;background:var(--surface);color:var(--ink);font-size:20px;border-bottom:1px solid var(--line)}
+.leaflet-bar a:last-child{border-bottom:0}
+.leaflet-bar a:hover{background:var(--sea-soft)}
+.leaflet-bar a.leaflet-disabled{color:var(--muted);cursor:default}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--surface) 85%,transparent);color:var(--muted);font-size:10.5px;padding:0 6px;margin:0!important;border-top-left-radius:6px}
+.leaflet-control-attribution a{color:var(--muted)}
+.leaflet-popup{position:absolute;text-align:center;margin-bottom:22px}
+.leaflet-popup-content-wrapper{padding:0;text-align:right;border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:0 8px 28px rgba(0,0,0,.25);overflow:hidden}
+.leaflet-popup-content{margin:0;line-height:1.4;min-height:1px;width:240px!important;direction:rtl}
+.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}
+.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;transform:rotate(45deg);background:var(--surface)}
+.leaflet-popup-close-button{position:absolute;top:6px;right:6px;z-index:2;width:28px;height:28px;border-radius:50%;background:var(--surface);color:var(--ink);text-align:center;font:18px/28px Tahoma,sans-serif;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.leaflet-container.no-tiles{background:var(--land)}
+
+/* Map markers */
+.mk{background:none;border:0}
+.mk .p{position:absolute;left:0;top:0;transform:translate(-50%,-100%);direction:rtl;white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--surface);color:var(--ink);border:1.5px solid var(--ink);font:700 12.5px/1.3 var(--f-body);margin-top:-8px;font-variant-numeric:tabular-nums;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .12s,background .12s}
+.mk .p::after{content:"";position:absolute;left:50%;bottom:-6px;width:8px;height:8px;background:inherit;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.mk.near .p{border-style:dashed;border-color:var(--near)}
+.mk.near .p::after{border-color:var(--near)}
+.mk.fav .p{background:var(--near-soft)}
+.mk.flag .p{opacity:.6}
+.mk.zone .p{background:var(--sea);border-color:var(--sea);color:#fff;padding:5px 11px;text-align:center}
+.mk.zone .p small{display:block;font-weight:500;font-size:11px;opacity:.85}
+.mk.zone .p::after{border-color:var(--sea)}
+.mk.hot .p,.mk.sel .p{background:var(--tram);border-color:var(--tram-ink);color:var(--tram-ink);transform:translate(-50%,-100%) scale(1.12);z-index:5}
+.mk.hot .p::after,.mk.sel .p::after{border-color:var(--tram-ink)}
+.pop .im{aspect-ratio:16/10;background:linear-gradient(135deg,var(--sea-soft),var(--land));display:grid;place-items:center;color:var(--muted);font-size:12px}
+.pop .im img{width:100%;height:100%;object-fit:cover;display:block}
+.pop .bd{padding:10px 12px 12px}
+.pop .t{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}
+.pop .pr{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}
+.pop .sp{font-size:13px;margin:2px 0 10px;font-variant-numeric:tabular-nums}
+.pop .btn{width:100%;justify-content:center}
+.card.hl{border-color:var(--sea);box-shadow:0 0 0 3px var(--sea-soft)}
+
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-block:12px;margin-top:18px;border-bottom:1px solid var(--line)}
+.frow{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap}
+.fgroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.fgroup>label,.flabel{font-size:12.5px;color:var(--muted);font-weight:500}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.seg button{border:0;background:none;padding:7px 11px;font-size:13.5px;cursor:pointer;border-inline-start:1px solid var(--line)}
+.seg button:first-child{border-inline-start:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+select{font:inherit;font-size:13.5px;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;cursor:pointer;padding:7px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.chk input{accent-color:var(--new);margin:0}
+.chk.favs[aria-pressed="true"]{border-color:var(--near);background:var(--near-soft);color:var(--near)}
+.range{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:5px 12px}
+.range input{width:140px;accent-color:var(--sea)}
+.range output{font-weight:700;min-width:58px;font-size:14px}
+.areas{display:flex;gap:6px;overflow-x:auto;padding-top:10px;scrollbar-width:none}
+.areas::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip b{font-weight:600;color:var(--muted);margin-inline-start:4px}
+.chip[aria-pressed="true"]{background:var(--sea);border-color:var(--sea);color:#fff}
+.chip[aria-pressed="true"] b{color:inherit;opacity:.8}
+
+.reshead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-block:20px 12px;flex-wrap:wrap}
+.reshead h2{font-family:var(--f-display);font-weight:500;font-size:24px;margin:0}
+.linkbtn{border:0;background:none;color:var(--sea);cursor:pointer;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:color-mix(in srgb,var(--sea) 45%,var(--line));box-shadow:var(--shadow)}
+.photo{position:relative;aspect-ratio:16/10;max-width:100%;background:linear-gradient(135deg,var(--sea-soft),var(--land));cursor:pointer;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.card:hover .photo img{transform:scale(1.03)}
+.photo .ph{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:4px;color:var(--sea);text-align:center;padding:12px}
+.photo .ph b{font-family:var(--f-display);font-size:22px;font-weight:500}
+.photo .ph small{color:var(--muted);font-size:12px}
+.photo.loaded .ph{display:none}
+.photo .tags{position:absolute;top:10px;inset-inline-start:10px;display:flex;gap:6px;flex-wrap:wrap}
+.photo .fav{position:absolute;top:8px;inset-inline-end:8px}
+.badge{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--surface);color:var(--ink)}
+.badge.new{background:var(--new-soft);color:var(--new)}
+.badge.near{background:var(--near-soft);color:var(--near)}
+.badge.warn{background:var(--warn-soft);color:var(--warn)}
+.badge.mine{background:var(--tram);color:var(--tram-ink)}
+.fav{border:0;background:var(--surface);width:36px;height:36px;border-radius:50%;display:inline-grid;place-items:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.fav svg{width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.8}
+.fav[aria-pressed="true"] svg{fill:var(--near);stroke:var(--near)}
+.cbody{padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;flex:1;cursor:pointer}
+.where{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.where span{font-weight:600}
+.where small{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.addr{grid-column:1/-1;margin:0;color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.price{font-size:27px;font-weight:700;line-height:1.15}
+.price small{font-size:13px;font-weight:500;color:var(--muted);margin-inline-start:4px}
+.specs{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:14px;margin-top:4px}
+.specs span{display:inline-flex;align-items:center;gap:5px}
+.specs svg{width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:1.6}
+.ppm{font-size:12.5px;color:var(--muted);text-align:end;align-self:end}
+.ppm b{display:block;color:var(--ink);font-size:17px;font-weight:700}
+.actions{display:flex;gap:8px;border-top:1px solid var(--line);padding:12px 16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:600;text-decoration:none;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.btn.primary{background:var(--tram);border-color:var(--tram);color:var(--tram-ink)}
+.btn:hover{border-color:var(--sea)}
+.empty{grid-column:1/-1;text-align:center;padding:40px 16px;border:1px dashed var(--line);border-radius:16px;color:var(--muted)}
+
+.compare{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.compare h3{margin:0 0 10px;font-size:16px}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;min-width:440px;font-size:14px}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start;white-space:nowrap}
+.tbl th{color:var(--muted);font-weight:500;font-size:12.5px}
+.tbl td.best{color:var(--new);font-weight:700}
+
+.scrim{position:fixed;inset:0;background:rgba(6,16,22,.5);z-index:20}
+.panel{position:fixed;z-index:21;inset-block:0;inset-inline-start:0;width:min(460px,100%);background:var(--bg);border-inline-end:1px solid var(--line);overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));box-shadow:var(--shadow)}
+@media (max-width:640px){.panel{inset-block:auto 0;inset-inline:0;width:100%;max-height:90%;border-radius:18px 18px 0 0;border:1px solid var(--line)}}
+.ptop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panel h2{font-family:var(--f-display);font-weight:500;font-size:26px;margin:0}
+.x{border:1px solid var(--line);background:var(--surface);border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:17px;line-height:1;flex:none}
+.pimg{margin-top:12px;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-width:100%;background:linear-gradient(135deg,var(--sea-soft),var(--land));display:grid;place-items:center;color:var(--muted);font-size:13px;text-align:center}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.psec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
+.psec h3{margin:0 0 8px;font-size:13.5px;color:var(--muted);font-weight:500}
+.psec ul{margin:0;padding-inline-start:18px;font-size:14px}
+.psec li+li{margin-top:3px}
+.cmp{display:grid;gap:10px}
+.cmp .row{display:grid;grid-template-columns:104px minmax(0,1fr) 56px;gap:8px;align-items:center;font-size:13px}
+.cmp .bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.cmp .bar i{display:block;height:100%;background:var(--muted)}
+.cmp .row.me .bar i{background:var(--sea)}
+.verdict{margin:10px 0 0;font-weight:600}
+.verdict.good{color:var(--new)}.verdict.bad{color:var(--near)}
+.calc{display:grid;gap:10px}
+.calc label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+.calc input{width:84px;font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed var(--line);padding-top:10px}
+.total b{font-size:24px}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.pact{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+footer{color:var(--muted);font-size:13px;padding-block:28px 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:32px}
+footer p{margin:0;max-width:62ch}
+
+
+/* Simplified basemap labels */
+.lbl{background:none;border:0}
+.lbl span{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;font:600 12px/1 var(--f-body);color:var(--lbl);text-shadow:0 0 3px var(--land),0 0 3px var(--land),0 0 6px var(--land);pointer-events:none}
+.lbl.major span{font:700 13.5px/1 var(--f-display);color:var(--ink)}
+.lbl.seaname span{font:500 20px/1 var(--f-display);color:var(--sea);opacity:.6;text-shadow:none;letter-spacing:.02em}
+.lbl.road span{font:500 10.5px/1 var(--f-body);color:var(--muted);text-shadow:0 0 3px var(--road)}
+#map.lbl-lo .lbl.minor,#map.lbl-lo .lbl.road{display:none}
+#map.lbl-min .lbl.major span{font-size:12px}
+#map.dark-tiles .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.92) saturate(.7)}
+/* ---------- Motion & polish layer ---------- */
+header.top.hero{position:relative;margin-top:14px;padding:22px 20px 0;border-radius:24px;background:linear-gradient(160deg,var(--hero-a),var(--hero-b));color:var(--hero-ink);overflow:hidden;isolation:isolate;box-shadow:var(--shadow)}
+.hero .brand{position:relative;z-index:1}
+.hero .brand h1{animation:rise .6s var(--ease) both}
+.hero .brand h1 span{color:var(--tram)}
+.hero .brand p{color:color-mix(in srgb,var(--hero-ink) 80%,transparent);animation:rise .6s var(--ease) .08s both}
+.hero .status{animation:rise .6s var(--ease) .16s both}
+.hero .pill{background:var(--hero-soft);border-color:transparent;color:var(--hero-ink)}
+.hero a.pill:hover{background:color-mix(in srgb,var(--hero-ink) 22%,transparent);color:var(--hero-ink)}
+.hero .refresh{background:var(--tram);border-color:var(--tram);color:var(--tram-ink)}
+.hero .msg{position:relative;z-index:1;color:var(--hero-ink)}
+.hero .msg.err{display:inline-block;background:var(--warn-soft);color:var(--warn);padding:4px 10px;border-radius:8px}
+.hero .stats{position:relative;z-index:1;background:transparent;border:0;border-radius:0;gap:10px;margin:18px 0 0;padding-bottom:20px;overflow:visible}
+.hero .stat{background:var(--hero-soft);border-radius:14px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:rise .6s var(--ease) both}
+.hero .stat:nth-child(2){animation-delay:.06s}.hero .stat:nth-child(3){animation-delay:.12s}.hero .stat:nth-child(4){animation-delay:.18s}
+.hero .stat small{color:color-mix(in srgb,var(--hero-ink) 75%,transparent)}
+.waves{position:absolute;left:0;right:0;bottom:0;height:80px;z-index:0;pointer-events:none;color:var(--hero-ink);overflow:hidden}
+.waves svg{position:absolute;left:0;bottom:0;width:200%;height:100%;opacity:.07;animation:drift 22s linear infinite}
+.waves svg+svg{opacity:.06;height:70%;animation-duration:13s;animation-direction:reverse}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@keyframes fade{from{opacity:0}}
+
+.mapcard{animation:rise .6s var(--ease) .2s backwards}
+.card{transition:transform .28s var(--ease),border-color .2s,box-shadow .28s}
+.card.enter{animation:rise .5s var(--ease) both;animation-delay:calc(var(--i,0) * 45ms)}
+@media (hover:hover){.card:hover{transform:translateY(-4px)}}
+.card .photo img{transition:transform .5s var(--ease)}
+@media (hover:hover){.card:hover .photo img{transform:scale(1.06)}}
+.btn,.chip,.seg button,.mbtn,.fav,.refresh,.chk,.linkbtn,.x{transition:transform .15s var(--ease),background-color .2s,border-color .2s,color .2s,box-shadow .2s}
+.btn:active,.chip:active,.seg button:active,.mbtn:active,.fav:active,.refresh:active,.chk:active,.x:active{transform:scale(.94)}
+.btn.primary:hover{box-shadow:0 6px 16px -8px var(--tram)}
+.fav.bump svg{animation:heart .5s var(--spring)}
+@keyframes heart{0%{transform:scale(.5)}55%{transform:scale(1.35)}100%{transform:scale(1)}}
+.filters{transition:box-shadow .25s}
+.filters.stuck{box-shadow:0 10px 24px -18px rgba(16,35,44,.55)}
+#fSentinel{height:1px;margin-bottom:-1px}
+
+.scrim:not([hidden]){animation:fade .25s ease both}
+.scrim.closing{opacity:0;transition:opacity .22s}
+.panel:not([hidden]){animation:sheetSide .34s var(--ease) both}
+.panel.closing{transform:translateX(105%);transition:transform .22s ease-in}
+@keyframes sheetSide{from{transform:translateX(105%)}}
+@keyframes sheetUp{from{transform:translateY(100%)}}
+.panel .psec,.panel .pimg,.panel .pact{animation:rise .45s var(--ease) both}
+.panel .pimg{animation-delay:.05s}.panel .psec:nth-of-type(1){animation-delay:.1s}.panel .psec:nth-of-type(2){animation-delay:.15s}.panel .psec:nth-of-type(3){animation-delay:.2s}.panel .pact{animation-delay:.25s}
+.cmp .bar i{animation:grow .7s var(--ease) .25s both;transform-origin:right}
+@keyframes grow{from{transform:scaleX(0)}}
+.grab{display:none}
+@media (max-width:640px){
+  .panel:not([hidden]){animation-name:sheetUp}
+  .panel.closing{transform:translateY(100%)}
+  .grab{display:block;width:44px;height:5px;border-radius:3px;background:var(--line);margin:-4px auto 12px}
+  header.top.hero{padding:18px 16px 0;border-radius:20px}
+}
+
+.mapwrap.full{animation:mapIn .3s var(--ease)}
+@keyframes mapIn{from{opacity:.3;transform:scale(.96)}}
+.leaflet-popup-content-wrapper{animation:popIn .3s var(--spring);transform-origin:50% 100%}
+@keyframes popIn{from{opacity:0;transform:translateY(8px) scale(.85)}}
+.mk .p{transition:transform .22s var(--spring),background .15s}
+
+.fab{position:fixed;z-index:12;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 30px));display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border:0;border-radius:999px;background:var(--ink);color:var(--surface);font:600 14px var(--f-body);box-shadow:0 10px 26px -8px rgba(0,0,0,.45);cursor:pointer;visibility:hidden;transition:transform .35s var(--spring),visibility .35s}
+.fab svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.fab.show{transform:translate(-50%,0);visibility:visible}
+.fab:active{transform:translate(-50%,0) scale(.94)}
+.toast{position:fixed;z-index:30;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translate(-50%,-160%);padding:9px 16px;border-radius:999px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);font-size:13.5px;font-weight:600;white-space:nowrap;transition:transform .35s var(--spring)}
+.toast.show{transform:translate(-50%,0)}
+
+/* ---------- Professional UI pass ---------- */
+.wrap{max-width:1240px}
+header.top.hero{margin-top:12px;border-radius:26px;padding:26px 24px 0}
+.hero .brand h1{font-weight:800;font-size:clamp(28px,5vw,42px);letter-spacing:-.01em}
+.hero .brand p{font-size:14.5px}
+.hero .stats{gap:12px}
+.hero .stat{padding:14px 16px;border:1px solid rgba(255,255,255,.14)}
+.hero .stat b{font:800 26px/1.15 var(--f-display)}
+.mapcard{border-radius:22px;margin-top:16px}
+.maphead{padding:12px 16px}
+.maphead h2{font:800 18px var(--f-display)}
+.mfull{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:999px;padding:9px 15px;background:var(--sea);color:var(--on-sea);font-weight:700;font-size:13px;cursor:pointer;transition:transform .15s var(--ease),filter .2s}
+.mfull:hover{filter:brightness(1.1)}.mfull:active{transform:scale(.95)}
+.mfull svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.legend .zdot{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--sea);color:var(--on-sea);font:800 11px var(--f-display)}
+/* round zone bubbles */
+.mk.zone2 .zb{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:var(--s);height:var(--s);border-radius:50%;background:var(--sea);color:var(--on-sea);display:grid;place-items:center;border:3px solid var(--surface);box-shadow:0 3px 12px rgba(0,0,0,.32);transition:transform .2s var(--spring),background .15s}
+.mk.zone2 .zb b{font:800 15px/1 var(--f-display)}
+.mk.zone2.near .zb{border-style:dashed;border-color:var(--near)}
+.mk.zone2 .zn{position:absolute;left:0;top:calc(var(--s) / 2 + 3px);transform:translateX(-50%);white-space:nowrap;text-align:center;font:700 12px/1.2 var(--f-body);color:var(--ink);text-shadow:0 0 3px var(--surface),0 0 3px var(--surface),0 0 6px var(--surface);pointer-events:none}
+.mk.zone2 .zn small{display:block;font-weight:500;font-size:10.5px;color:var(--muted)}
+.mk.zone2.hot .zb,.mk.zone2.sel .zb{background:var(--tram);color:var(--tram-ink);transform:translate(-50%,-50%) scale(1.15)}
+#map.lbl-lo .lbl.minor,#map.lbl-lo .lbl.major,#map.lbl-lo .lbl.road{display:none}
+/* filters */
+.filters{margin-top:16px}
+.range{height:44px;border-radius:12px}
+.seg{border-radius:12px}.seg button{padding:10px 14px;font-weight:600}
+.chk,select{min-height:44px;border-radius:12px}
+.chk{align-items:center;font-weight:600}
+.chip{min-height:38px;display:inline-flex;align-items:center;font-weight:600;padding-inline:14px}
+.reshead h2{font:800 24px var(--f-display)}
+/* listing cards */
+.grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{border-radius:20px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,35,44,.05)}
+.card:hover{box-shadow:0 18px 36px -20px rgba(16,35,44,.4)}
+.photo{aspect-ratio:4/3}
+.photo:not(.loaded){background:linear-gradient(150deg,var(--hero-a),var(--hero-b))}
+.photo .shade{position:absolute;inset:auto 0 0 0;height:58%;background:linear-gradient(to top,rgba(4,18,26,.82),rgba(4,18,26,0));pointer-events:none}
+.photo .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:14px 14px 58px;color:#fff}
+.photo .ph svg{width:42px;height:42px;stroke:currentColor;fill:none;stroke-width:1.4;opacity:.7}
+.photo .ph b{font:700 19px var(--f-display);color:#fff}
+.photo .ph small{color:rgba(255,255,255,.78);font-size:12px}
+.seephotos{margin-top:6px;padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:12px;font-weight:700;text-decoration:none;position:relative;z-index:2}
+.seephotos:hover{background:rgba(255,255,255,.28)}
+.pricetag{position:absolute;inset-inline-start:14px;bottom:11px;display:flex;align-items:baseline;gap:6px;color:#fff;pointer-events:none}
+.pricetag b{font:800 28px/1 var(--f-display);text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.pricetag span{font-size:12.5px;opacity:.92}
+.photo .tags{z-index:2}
+.cbody{display:block;padding:14px 16px 4px}
+.ttl{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ttl h3{margin:0;font:700 17px var(--f-display);min-width:0}
+.ttl .host{flex:none;font-size:11.5px;font-weight:600;color:var(--muted);background:var(--bg);padding:3px 9px;border-radius:999px}
+.cbody .addr{margin:4px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0;padding:0;list-style:none}
+.facts li{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;background:var(--bg);font-size:13px;font-weight:600}
+.facts li svg{width:15px;height:15px;stroke:var(--muted);fill:none;stroke-width:1.7}
+.facts li.ppm2{background:var(--sea-soft);color:var(--sea)}
+.actions{display:grid;grid-template-columns:1fr auto;gap:8px;border:0;padding:12px 16px 16px}
+.btn{justify-content:center;min-height:44px;border-radius:12px}
+.btn.primary{background:var(--sea);border-color:var(--sea);color:var(--on-sea)}
+.btn.primary:hover{filter:brightness(1.1);box-shadow:none}
+.btn.ghost{background:transparent}
+.pop .im,.pimg{background:linear-gradient(150deg,var(--hero-a),var(--hero-b));color:#fff}
+.panel .price,.psec .price{font-family:var(--f-display)}
+
+/* ask the advertiser + update summary */
+.ask .fl{display:block;font-size:12.5px;color:var(--muted);margin:12px 0 5px;font-weight:600}
+.ask input[type=text],.ask input[type=tel],.ask textarea{width:100%;font:inherit;font-size:15px;padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.askmsg{margin:0;padding:12px 14px;border-radius:12px;background:var(--bg);white-space:pre-wrap;word-break:break-all;font-size:14px;line-height:1.7;direction:rtl}
+.qchips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+.qchips label{position:relative;cursor:pointer}
+.qchips input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.qchips span{display:inline-block;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;font-weight:600;transition:background-color .2s,color .2s,border-color .2s}
+.qchips input:checked+span{background:var(--sea);border-color:var(--sea);color:var(--on-sea)}
+.qchips input:focus-visible+span{outline:2px solid var(--sea);outline-offset:2px}
+.askact{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}
+.btn.wa{background:#178a4a;border-color:#178a4a;color:#fff}
+.btn.wa:hover{filter:brightness(1.1)}
+.actions{grid-template-columns:1fr auto auto}
+.pricetag s{font-size:13px;opacity:.7;margin-inline-end:2px}
+.changes{position:relative;z-index:1;margin:12px 0 0;padding:12px 14px;border-radius:14px;background:var(--hero-soft);color:var(--hero-ink);font-size:13.5px;animation:rise .4s var(--ease) both}
+.changes ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.changes li{display:flex;gap:8px;align-items:baseline}
+.changes li span{flex:none;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--tram);color:var(--tram-ink)}
+.changes li.del span{background:var(--warn-soft);color:var(--warn)}
+.changes .linkbtn{color:var(--hero-ink);margin-top:6px;padding:0}
+@media (max-width:640px){.grid{grid-template-columns:minmax(0,1fr)}header.top.hero{padding:20px 16px 0}.hero .stat b{font-size:22px}}
+#map.lbl-mid .lbl.road{display:none}
+#map.lbl-lo .lbl.stop{display:none}
+#map.lbl-mid .lbl.stop span{display:none}
+.lbl.road span{font:600 11px/1 var(--f-body);color:var(--lbl);text-shadow:0 0 2px var(--land),0 0 3px var(--land),0 0 5px var(--land)}
+.lbl.road.minor-road span{font-weight:500;font-size:10.5px;color:var(--muted)}
+.lbl.stop i{position:absolute;left:0;top:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--tram);border:1.5px solid var(--tram-ink)}
+.lbl.stop span{transform:translate(-50%,7px);font:600 10.5px/1 var(--f-body);color:var(--tram-ink);background:color-mix(in srgb,var(--tram) 85%,transparent);padding:2px 5px;border-radius:5px;text-shadow:none}
+.lbl.minor span{font-size:12.5px}
+.legend .tl{display:inline-block;width:22px;height:4px;border-radius:2px;background:var(--tram);box-shadow:0 0 0 1px color-mix(in srgb,var(--tram-ink) 55%,transparent)}
+</style>
+
+<div class="wrap">
+  <header class="top hero">
+    <div class="waves" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="currentColor" d="M0 40Q180 10 360 40T720 40T1080 40T1440 40V80H0Z"/></svg><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="currentColor" d="M0 45Q180 70 360 45T720 45T1080 45T1440 45V80H0Z"/></svg></div>
+    <div class="brand">
+      <div>
+        <h1>شقق <span>إسكندرية</span></h1>
+        <p>غير مفروشة · حتى ١٥٬٠٠٠ جنيه شهرياً · من إعلانات حقيقية</p>
+      </div>
+      <div class="status">
+        <span class="pill" id="status"><span class="dot"></span><span id="statusText">نسخة محفوظة من الشيت</span></span>
+        <button class="refresh" id="refresh" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>حدّث من الشيت</button>
+        <a class="pill" href="https://docs.google.com/spreadsheets/d/1Yt2zpUyKu2ZICJ_HG-tTuIAroia7vFyHqhvyys38_2k/edit" target="_blank" rel="noopener">الشيت ↗</a>
+      </div>
+    </div>
+    <p class="msg" id="msg" hidden></p>
+    <div class="changes" id="changes" hidden></div>
+
+  <section class="stats" aria-label="ملخص">
+    <div class="stat"><b class="num" id="sCount">—</b><small>شقة متاحة</small></div>
+    <div class="stat"><b class="num" id="sMin">—</b><small>أقل إيجار</small></div>
+    <div class="stat"><b class="num" id="sMed">—</b><small>الإيجار الوسيط</small></div>
+    <div class="stat"><b class="num" id="sPpm">—</b><small>متوسط جنيه / م²</small></div>
+  </section>
+  </header>
+
+  <section class="mapcard" aria-label="خريطة الشقق">
+    <div class="maphead">
+      <h2>الخريطة</h2>
+      <button class="mfull" id="mFull" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>افتح الخريطة كاملة</button>
+    </div>
+    <div class="mapwrap">
+      <div id="map"></div>
+      <button class="searchhere" id="searchHere" type="button" hidden>اعرض الشقق في المنطقة دي</button>
+      <div class="mapbar">
+        <button class="mbtn" id="mClose" type="button" aria-label="اقفل الخريطة الكاملة" title="اقفل الخريطة الكاملة" hidden><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <button class="mbtn" id="mFit" type="button" aria-label="افتح الخريطة على الشاشة كلها" title="افتح الخريطة على الشاشة كلها"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+        <button class="mbtn" id="mTall" type="button" aria-label="كبّر الخريطة" title="كبّر الخريطة"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"/></svg></button>
+      </div>
+      <div class="mapnote" id="mapNote" hidden></div>
+    </div>
+    <div class="legend">
+      <span class="k"><span class="zdot">٣</span>منطقة (عدد شققها)، دوس عليها تقرّب</span>
+      <span class="k"><span class="sw">٨٫٥ ألف</span>شقة</span>
+      <span class="k"><span class="sw n">٦ ألف</span>قريب من النطاق</span>
+      <span class="k"><span class="tl"></span>خط الترام</span>
+    </div>
+  </section>
+
+  <div id="fSentinel" aria-hidden="true"></div>
+  <section class="filters" aria-label="الفلاتر">
+    <div class="frow">
+      <div class="fgroup">
+        <label for="fMax">لحد</label>
+        <div class="range"><input type="range" id="fMax" min="5000" max="15000" step="500" value="15000"><output id="fMaxOut" class="num" for="fMax">١٥٬٠٠٠</output></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel" id="lblRooms">الغرف</span>
+        <div class="seg" role="group" aria-labelledby="lblRooms" id="fRooms">
+          <button data-v="0" aria-pressed="true">الكل</button>
+          <button data-v="1">١</button>
+          <button data-v="2">٢</button>
+          <button data-v="3">٣+</button>
+        </div>
+      </div>
+      <label class="chk" for="fNew"><input type="checkbox" id="fNew"> الجديد بس</label>
+      <button class="chk favs" id="fFav" aria-pressed="false">♥ المفضلة <b class="num" id="favN">٠</b></button>
+      <div class="fgroup">
+        <label for="fSort">ترتيب</label>
+        <select id="fSort">
+          <option value="price">الأرخص أولاً</option>
+          <option value="ppm">أفضل سعر للمتر</option>
+          <option value="size">الأكبر مساحة</option>
+          <option value="new">الجديد أولاً</option>
+          <option value="entry">أقل تكلفة دخول</option>
+        </select>
+      </div>
+    </div>
+    <div class="areas" id="areas" role="group" aria-label="المنطقة"></div>
+  </section>
+
+  <div class="reshead">
+    <h2 id="resTitle">كل الشقق</h2>
+    <button class="linkbtn" id="reset" hidden>مسح الفلاتر</button>
+  </div>
+  <main class="grid" id="grid"></main>
+  <section class="compare" id="compare" hidden aria-label="مقارنة المفضلة">
+    <h3>مقارنة الشقق اللي حفظتها</h3>
+    <div class="tbl" id="cmpTbl"></div>
+  </section>
+  <div class="scrim" id="scrim" hidden></div>
+  <button class="fab" id="fab" type="button" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>افتح الخريطة</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <aside class="panel" id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="pTitle"></aside>
+
+  <footer>
+    <p>الأسعار والصور من الإعلانات الأصلية (دوبيزل، بروبرتي فايندر، بيوت). اتأكد من التوافر والموقع وشروط التعاقد مع المعلن قبل أي دفع.</p>
+    <p id="updated" class="num"></p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+(function(){
+"use strict";
+var SHEET_ID="1Yt2zpUyKu2ZICJ_HG-tTuIAroia7vFyHqhvyys38_2k";
+var SHEET_URL="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/edit";
+var DATA_TAB="بيانات الخريطة";
+var CSV_URL="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=out:csv&sheet="+encodeURIComponent(DATA_TAB);
+
+/* Snapshot of the sheet's "بيانات الخريطة" tab. The refresh button replaces it with the live sheet. */
+var SNAPSHOT="2026-10-10T02:10:00+03:00";
+var FALLBACK=/*DATA*/[{"id":"206242647","price":6000,"area":"سموحة","address":"بجوار فتح الله جرين تاورز · شارع 18","latitude":31.2153578,"longitude":29.9529355,"image":"https://images.dubizzle.com.eg/thumbnails/186610145-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B3%D9%85%D9%88%D8%AD%D9%87-%D8%A8%D8%AC%D9%88%D8%A7%D8%B1-%D9%81%D8%AA%D8%AD-%D8%A7%D9%84%D9%84%D9%87-%D8%AC%D8%B1%D9%8A%D9%86-%D8%AA%D8%A7%D9%88%D8%B1%D8%B2-%D8%B4%D8%A7%D8%B1%D8%B9-18-ID206242647.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 120م² · 🛏 غرفتان مقفولتان · 🛁 حمام\n📍 بجوار فتح الله جرين تاورز · شارع 18\nالدور الثاني · ريسبشن 3 قطع\n✅ غير مفروشة · من المالك بدون وسيط\n⌖ نقطة مرجعية للمنطقة عند نادي سموحة؛ ليست عنوان الشقة أو شارع 18 أو الهيلتون.","terms":"💳 6,000 مقدم + 6,000 تأمين\nℹ الوصف غرفتان؛ خانة الإعلان تسجل 4."},
+{"id":"91576179","price":8900,"area":"سموحة","address":"شارع الهيلتون · الدور 11","latitude":31.2153578,"longitude":29.9529355,"image":"https://static.shared.propertyfinder.eg/media/images/listing/V6ZK9Y7TEV31R94QME3H712PJ0/f8de220b-c15d-41e0-99cb-9a0e5360d33e/1312x894.jpg?v=bdc1bc88380b93ba9e062d861f4acc92","source_url":"https://www.propertyfinder.eg/ar/plp/rent/apartment-for-rent-alexandria-hay-sharq-smouha-al-hilton-st-91576179.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 120م² · 🛏 3 غرف · 🛁 حمام\n📍 شارع الهيلتون · الدور 11\nفيو مفتوح · Inspire Homes · كود 00957\n✅ غير مفروشة\n⌖ نقطة مرجعية للمنطقة عند نادي سموحة؛ ليست عنوان الشقة أو شارع 18 أو الهيلتون.","terms":"💳 تفاصيل المقدم والتأمين والعمولة غير مؤكدة؛ اسأل المعلن."},
+{"id":"504188851","price":10000,"area":"سموحة","address":"خطوات من فوزي معاذ · الدور الرابع","latitude":31.2143127,"longitude":29.9445483,"image":"https://images.dubizzle.com.eg/thumbnails/186326553-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1-100%D9%85-%D8%B3%D9%85%D9%88%D8%AD%D8%A9-%D8%AE%D8%B7%D9%88%D8%A7%D8%AA-%D9%85%D9%86-%D8%B4-%D9%81%D9%88%D8%B2%D9%89-%D9%85%D8%B9%D8%A7%D8%B0-ID504188851.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"street","details":"📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 خطوات من فوزي معاذ · الدور الرابع\n🪜 بدون أسانسير · عدادات كاملة\n✅ غير مفروشة · The 8 · كود 02424\n⌖ نقطة مرجعية على شارع فوزي معاذ؛ ليست موقع المبنى.\n🔗 تطابق مؤكد لنفس الوحدة على Property Finder (113816299): https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-smouha-mohamed-fawzy-moaz-st-113816299.html","terms":"💳 شهران مقدم + شهران تأمين + شهر عمولة"},
+{"id":"209086459","price":8000,"area":"سيدي جابر","address":"شارع المشير · بين المحطة والشيخ","latitude":31.2238448,"longitude":29.9372404,"image":"https://images.dubizzle.com.eg/thumbnails/186205457-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D9%82%D8%A7%D9%86%D9%88%D9%86-%D8%AC%D8%AF%D9%8A%D8%AF-%D8%B3%D9%8A%D8%AF%D9%8A-%D8%AC%D8%A7%D8%A8%D8%B1-%D8%B4%D8%A7%D8%B1%D8%B9-%D8%A7%D9%84%D9%85%D8%B4%D9%8A%D8%B1-ID209086459.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 55م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع المشير · بين المحطة والشيخ\n🪜 الدور الثالث بدون أسانسير\n✅ غير مفروشة · للأسرة · من المالك\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 تأمين 8,000 جنيه\nالوسطاء يمتنعون حسب الإعلان."},
+{"id":"504121843","price":9000,"area":"سيدي جابر","address":"شارع طارق · ريسبشن 3 قطع","latitude":31.2206108,"longitude":29.9410684,"image":"https://images.dubizzle.com.eg/thumbnails/185002900-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D8%B3%D9%8A%D8%AF%D9%8A-%D8%AC%D8%A7%D8%A8%D8%B1-%D8%B4%D8%A7%D8%B1%D8%B9-%D8%B7%D8%A7%D8%B1%D9%82-110-%D9%852-ID504121843.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"street","details":"📐 110م² · 🛏 غرفتان · 🛁 حمامان\n📍 شارع طارق · ريسبشن 3 قطع\n✅ غير مفروشة · عدادات كاملة\nRE/MAX Avalon · كود 038787\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"88123226","price":10000,"area":"سيدي جابر","address":"شارع ابن نوفل · الدور 13","latitude":31.2206799,"longitude":29.9401679,"image":"https://static.shared.propertyfinder.eg/media/images/listing/65Z72C7RJ1TVE2KPKRPWYK2KC8/ffda9443-f336-4211-b8f5-06495c4ff8c2/668x452.jpg?v=57691fb485f0ed9294483217745d84e4","source_url":"https://www.propertyfinder.eg/ar/plp/rent/apartment-for-rent-alexandria-hay-sharq-sidi-gaber-ibn-nofal-st-88123226.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"street","details":"📐 70م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع ابن نوفل · الدور 13\n🛗 أسانسير · Inspire Homes\n✅ غير مفروشة\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 تفاصيل المقدم والتأمين والعمولة غير مؤكدة؛ اسأل المعلن."},
+{"id":"504058865","price":7500,"area":"كليوباترا","address":"شارع بورسعيد · الدور السابع","latitude":31.2227954,"longitude":29.9368873,"image":"https://images.dubizzle.com.eg/thumbnails/183752919-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1-%D9%81%D9%8A-%D9%83%D9%84%D9%8A%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7-%D8%B4-%D8%A8%D9%88%D8%B1%D8%B3%D8%B9%D9%8A%D8%AF-75-%D9%85-ID504058865.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 75م² · 🛏 غرفة · 🛁 حمام\n📍 شارع بورسعيد · الدور السابع\n🛗 يوجد أسانسير · ريسبشن ومطبخ\n✅ غير مفروشة · شركة العلا العقارية\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 المقدم والتأمين والعمولة غير مذكورين؛ اسأل المعلن."},
+{"id":"82608137","price":9000,"area":"الإبراهيمية","address":"الإبراهيمية · الدور السابع","latitude":31.2160314,"longitude":29.9253611,"image":"https://static.shared.propertyfinder.eg/media/images/listing/WVWRPWKN9GW8DPWA1T37YZK6B0/9e8b5e56-116f-4239-9dab-1e729e598dae/668x452.jpg?v=ae95f1270918e3d80b30f2809fa9f7c3","source_url":"https://www.propertyfinder.eg/ar/plp/rent/apartment-for-rent-alexandria-hay-wasat-ibrahimia-82608137.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 70م² · 🛏 غرفة · 🛁 حمام\n📍 الإبراهيمية · الدور السابع\n🌊 فيو بحر جانبي · يمكن غلق غرفة ثانية\n✅ غير مفروشة · RE/MAX Avalon\n⌖ مركز المنطقة تقريبياً؛ العنوان التفصيلي غير متاح.","terms":"💳 تفاصيل المقدم والتأمين والعمولة غير مؤكدة؛ اسأل المعلن."},
+{"id":"504172563","price":10000,"area":"ستانلي","address":"خطوات من البحر · الدور الخامس","latitude":31.2349967,"longitude":29.9486108,"image":"https://images.dubizzle.com.eg/thumbnails/185986916-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1-100-%D9%85-%D8%B3%D8%AA%D8%A7%D9%86%D9%84%D9%8A-%D8%AE%D8%B7%D9%88%D8%A7%D8%AA-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AD%D8%B1-ID504172563.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 خطوات من البحر · الدور الخامس\n🪜 بدون أسانسير · فيو مفتوح\n✅ غير مفروشة · RE/MAX Avalon\n⌖ نقطة مرجعية لمنطقة ستانلي عند الكوبري؛ ليست موقع المبنى.\n🔗 مصدر بديل مؤكد لنفس الوحدة (كود 042894): https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-stanley-stanley-bridge-112985780.html","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة\nكود الوحدة 042894"},
+{"id":"504002561","price":10000,"area":"بولكلي","address":"شارع إبراهيم راجي · الدور الثالث","latitude":31.2276123,"longitude":29.9567118,"image":"https://images.dubizzle.com.eg/thumbnails/182467105-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D8%A8%D8%B4%D8%A7%D8%B1%D8%B9-%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85-%D8%B1%D8%A7%D8%AC%D9%8A-%D8%A8%D9%81%D9%8A%D9%88-%D9%85%D9%81%D8%AA%D9%88%D8%AD-%D9%88%D8%B3%D8%B9%D8%B1-%D9%85%D9%85%D8%AA%D8%A7%D8%B2-ID504002561.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"street","details":"📐 90م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع إبراهيم راجي · الدور الثالث\nفيو مفتوح · Inspire Homes · كود 03873\n✅ غير مفروشة\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.\n🔗 مصدر بديل مؤكد لنفس الوحدة (كود 03873): https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-bolkly-104040886.html","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"98551447","price":10000,"area":"جليم / دير الرحمة","address":"دير الرحمة · الدور 13","latitude":31.2400711,"longitude":29.9572961,"image":"https://static.shared.propertyfinder.eg/media/images/listing/AAR2BXJY1FHSEA05R2MQVXPFKW/9ff824ac-0cec-4d49-b0bc-843979dc2561/1312x894.jpg?v=927c439de92c82574d46b42e93dd6f9b","source_url":"https://www.propertyfinder.eg/ar/plp/rent/apartment-for-rent-alexandria-hay-sharq-fleming-dayr-al-rahma-st-98551447.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 90م² · 🛏 غرفتان · 🛁 حمام\n📍 دير الرحمة · الدور 13\n🛗 أسانسير · عدادات كاملة\n✅ غير مفروشة · I-Broker\n⌖ مركز جليم تقريبياً؛ تصنيف الإعلان فلمنج ويحتاج تأكيد.","terms":"⚠ العنوان جليم/دير الرحمة، وتصنيف الرابط فلمنج؛ أكد المنطقة قبل المعاينة."},
+{"id":"504172216","price":6000,"area":"مصطفى كامل","address":"نفق مصطفى كامل · الدور الأول سلم","latitude":31.2275241,"longitude":29.9464285,"image":"https://images.dubizzle.com.eg/thumbnails/185978169-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D9%87-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1-%D9%81%D9%8A-%D9%85%D8%B5%D8%B7%D9%81%D9%89-%D9%83%D8%A7%D9%85%D9%84-ID504172216.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 نفق مصطفى كامل · الدور الأول سلم\nعدادات كهرباء ومياه وغاز\n✅ غير مفروشة · Elite Group\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة\n🟠 منطقة قريبة من نطاق البحث"},
+{"id":"504048927","price":7500,"area":"فلمنج","address":"فلمنج · الدور الرابع وليس الأخير","latitude":31.23552,"longitude":29.9572734,"image":"https://images.dubizzle.com.eg/thumbnails/183556260-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D8%A8-%D9%81%D9%84%D9%85%D9%86%D8%AC-100%D9%85-ID504048927.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 فلمنج · الدور الرابع وليس الأخير\n🪜 بدون أسانسير · عدادات كاملة\n✅ غير مفروشة · صورة واحدة بالإعلان\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 مقدم 7,500 · عقد سنة ويجدد\n⚠ التأمين مختلف بين الوصف والخانة؛ أكده."},
+{"id":"209058856","price":8000,"area":"فلمنج","address":"فلمنج · أرضي مرتفع","latitude":31.23552,"longitude":29.9572734,"image":"https://images.dubizzle.com.eg/thumbnails/185702111-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D9%87-%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D8%AC%D8%AF%D9%8A%D8%AF-ID209058856.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 90م² · 🛏 3 غرف · 🛁 حمام\n📍 فلمنج · أرضي مرتفع\nعدادات كهرباء ومياه وغاز\n✅ غير مفروشة · صورة واحدة بالإعلان\n⌖ الموقع مرجع تقريبي، وليس عنوان المبنى.","terms":"💳 التأمين 8,000 جنيه\n🟠 منطقة قريبة من نطاق البحث"},
+{"id":"504195614","price":10000,"area":"رشدي","address":"خطوات من البحر · الدور الخامس","latitude":31.228945,"longitude":29.9514973,"image":"https://images.dubizzle.com.eg/thumbnails/186483091-400x300.jpeg","source_url":"https://www.dubizzle.com.eg/ad/%D8%B4%D9%82%D9%87-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D8%A7%D9%84%D8%B3%D9%83%D9%86%D9%8A-%D8%A8-%D8%B1%D8%B4%D8%AF%D9%8A-%D8%AE%D8%B7%D9%88%D8%A7%D8%AA-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AD%D8%B1-ID504195614.html","date":"","imported_at":"2026-10-05T07:45:43.988Z","location_precision":"area","details":"📐 110م² · 🛏 3 غرف · 🛁 حمام\n📍 خطوات من البحر · الدور الخامس\n🪜 بدون أسانسير · ريسبشن قطعتان\n✅ غير مفروشة · شركة السفير\n⌖ نقطة مرجعية لمنطقة رشدي عند محطة الترام؛ ليست موقع المبنى.","terms":"💳 شهر مقدم + شهران تأمين + شهر عمولة\n🟠 منطقة قريبة من نطاق البحث"},
+{"id":"pf-91580545","price":8000,"area":"فلمنج","address":"شارع النسافي / Al Nasaqi · الدور التاسع","latitude":31.23552,"longitude":29.9572734,"image":"https://static.shared.propertyfinder.eg/media/images/listing/RT5CCW7KEYWK67HY5GGSR51HQ4/13eb0fdb-8084-4792-a287-5216ddb00f8f/1312x894.webp?v=ad68de2564f4bc4e2e2f86d0d66df495","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-fleming-al-nasaqi-st-91580545.html","date":"","imported_at":"2026-10-05T08:52:22.654Z","location_precision":"area","details":"📐 130م² · 🛏 3 غرف · 🛁 حمام\n📍 شارع النسافي / Al Nasaqi · الدور التاسع\n🛗 أسانسير · عدادات كاملة · ريسبشن قطعتان\n✅ غير مفروشة · I-Broker · المرجع RT5CCW7KEYWK67HY5GGSR51HQ4\n⌖ مرجع منطقة فلمنج من OSM المخزّن بالشيت؛ ليس موقع المبنى أو الشارع بالتحديد.\nتاريخ النشر غير محدد؛ الصفحة تذكر منذ شهرين. متاح من 14 يوليو 2026 حسب المصدر، يلزم تأكيد التوافر مع المعلن.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-114612152","price":10000,"area":"شدس / جناكليس","address":"شارع محطة شدس · الدور الأول","latitude":31.239294052124023,"longitude":29.96952247619629,"image":"https://static.shared.propertyfinder.eg/media/images/listing/W31AH68ZTZYFC698YM82GGE648/2cf77b3d-b8ae-49c5-919f-03988d2b9284/1312x894.jpg?v=d0087fbca6c4ef2497086fe73278bb73","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-janaklees-mahatet-sheds-st-114612152.html","date":"2026-10-04T08:07:21Z","imported_at":"2026-10-05T09:40:47.359Z","location_precision":"street","details":"📐 120م² · 🛏 3 غرف · 🛁 1 حمام\n📍 شارع محطة شدس · الدور الأول\nريسبشن قطعتان · عدادات كاملة · تشطيب سوبر لوكس · I-Broker\n✅ غير مفروشة\n⌖ إحداثيات المصدر مرجع تقريبي للشارع؛ ليست عنوان المبنى. تواصل مع المعلن لتأكيد التوافر.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-108518436","price":6000,"area":"سيدي بشر","address":"متفرع من جمال عبد الناصر · الدور 11 والأخير","latitude":31.255647659301758,"longitude":29.983051300048828,"image":"https://static.shared.propertyfinder.eg/media/images/listing/1E9DZFEP82T1ZW9FR0YC77WC04/f9f1a4f9-eaf1-4655-82c8-afa022201d7d/1312x894.jpg?v=0c8cae7bbc60333dbf61e2e9cf6097ca","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-sidi-beshr-108518436.html","date":"2026-09-12T15:21:28Z","imported_at":"2026-10-05T09:40:47.359Z","location_precision":"area","details":"📐 70م² · 🛏 2 غرف · 🛁 1 حمام\n📍 متفرع من جمال عبد الناصر · الدور 11 والأخير\nريسبشن · إطلالة مفتوحة · الدور الأخير معزول حسب الإعلان · Inspire Homes · كود 06164\n✅ غير مفروشة\n⌖ إحداثيات المصدر مرجع تقريبي للمنطقة؛ ليست عنوان المبنى. تواصل مع المعلن لتأكيد التوافر.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-107966292","price":6500,"area":"ميامي","address":"خطوات من البحر · الدور 13 في عمارة 15 دور","latitude":31.265024185180664,"longitude":29.994457244873047,"image":"https://static.shared.propertyfinder.eg/media/images/listing/PXF7TB2CR1EBTK1JBF8PGGK094/fa7bba74-1d0d-4780-81eb-c13f8b48d417/1312x894.jpg?v=a5a738340bc5d3ed0bd35625258811d2","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-miami-107966292.html","date":"2026-09-10T11:16:52Z","imported_at":"2026-10-05T09:40:47.359Z","location_precision":"area","details":"📐 85م² · 🛏 2 غرف · 🛁 1 حمام\n📍 خطوات من البحر · الدور 13 في عمارة 15 دور\nريسبشن · إطلالة جانبية على البحر · أسانسير · Inspire Homes · كود 05975\n✅ غير مفروشة\n⌖ إحداثيات المصدر مرجع تقريبي للمنطقة؛ ليست عنوان المبنى. تواصل مع المعلن لتأكيد التوافر.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-110742821","price":9500,"area":"ميامي","address":"تقاطع إسكندر إبراهيم والعيسوي · الدور 10 في عمارة 12 دور","latitude":31.265024185180664,"longitude":29.994457244873047,"image":"https://static.shared.propertyfinder.eg/media/images/listing/XJ3A2KVH5TG14KV6S6KHXQA89M/8afb6d88-e9d0-43ad-b666-7a67a3fa035f/1312x894.jpg?v=5c7d406f28de5655cec93182ae2a90e3","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-miami-110742821.html","date":"2026-09-20T10:40:07Z","imported_at":"2026-10-05T09:40:47.359Z","location_precision":"area","details":"📐 90م² · 🛏 2 غرف · 🛁 1 حمام\n📍 تقاطع إسكندر إبراهيم والعيسوي · الدور 10 في عمارة 12 دور\nريسبشن قطعتان · إطلالة مفتوحة · أسانسير · Inspire Homes · كود 06643\n✅ غير مفروشة\n⌖ إحداثيات المصدر مرجع تقريبي للمنطقة؛ ليست عنوان المبنى. تواصل مع المعلن لتأكيد التوافر.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"bayut-504068077","price":10000,"area":"المنشية","address":"شارع وكالة الليمون · الدور 11","latitude":"","longitude":"","image":"https://images.bayut.eg/thumbnails/49563069-800x600.jpeg","source_url":"https://www.bayut.eg/تفاصيل-504068077/العقار.html","date":"2026-09-09","imported_at":"2026-10-05T09:40:47.359Z","location_precision":"unresolved","details":"📐 175م² · 🛏 3 غرف · 🛁 حمامان\n📍 شارع وكالة الليمون · الدور 11\nريسبشن 3 قطع · عقاري وان\n✅ غير مفروشة حسب صفحة الإعلان\n⌖ تعذر التحقق من إحداثيات مناسبة بثقة؛ تظهر ضمن الشقق غير المحددة. تواصل مع المعلن لتأكيد التوافر.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-97144555","price":8000,"area":"ميامي","address":"متفرع من إسكندر إبراهيم · الدور الأول في عمارة 20 دور","latitude":31.265024185180664,"longitude":29.994457244873047,"image":"https://static.shared.propertyfinder.eg/media/images/listing/HK3VVNZMQ57EYJ5QEB602HJQ60/9c170140-61c1-4864-8186-bb08558d0670/1312x894.webp?v=3705a70b1fcaec038567afda7445cd9c","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-miami-97144555.html","date":"","imported_at":"2026-10-05T12:44:03.725Z","location_precision":"area","details":"📐 130م² · 🛏 3 غرف · 🛁 حمام\nريسبشن 3 قطع · يطل الريسبشن على كلية ميامي · مرخصة، بناء 2000\nInspire Homes · سراج صلاح · كود 02649\n✅ غير مفروشة · إيجار شهري مؤكد من صفحة الإعلان\nتاريخ النشر الدقيق غير ظاهر؛ الصفحة تذكر منذ شهرين. تأكيد استمرار التوافر مع المعلن.\n⌖ مرجع منطقة ميامي المعتمد سابقاً في الشيت من Property Finder؛ ليس موقع المبنى أو الشارع بالتحديد.","terms":"💳 شهر مقدم + شهران تأمين + شهر عمولة"},
+{"id":"pf-95199310","price":7000,"area":"شدس","address":"خطوات من الترام · الدور الرابع في عمارة 5 أدوار","latitude":31.2400777,"longitude":29.971308,"image":"https://static.shared.propertyfinder.eg/media/images/listing/T40626RN8682XA9CSBY8XNZREG/7e2ba9e0-4c8d-4eaa-a950-a49b1b29b22b/1312x894.webp?v=7d06786b095e92b74138c65979dcf128","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-shods-95199310.html","date":"","imported_at":"2026-10-05T12:44:03.725Z","location_precision":"area","details":"📐 133م² · 🛏 3 غرف · 🛁 حمامان\nريسبشن 3 قطع · فيو مفتوح · مرخصة، بناء 2000\nInspire Homes · سراج صلاح · كود 02185\n✅ غير مفروشة · إيجار شهري مؤكد من صفحة الإعلان\nتاريخ النشر الدقيق غير ظاهر؛ الصفحة تذكر منذ شهرين. تأكيد استمرار التوافر مع المعلن.\n⌖ مرجع منطقة شدس عند محطة شوتس للترام؛ ليس عنوان المبنى. OSM node 4792326286: https://www.openstreetmap.org/node/4792326286","terms":"💳 شهران مقدم + شهران تأمين + شهر عمولة"},
+{"id":"pf-106302134","price":8000,"area":"شدس / باكوس","address":"شارع مرتضى باشا · الدور 16","latitude":31.2364315,"longitude":29.9693222,"image":"https://static.shared.propertyfinder.eg/media/images/listing/6ES1TED39B4SGPT9BGG4PKYHCG/bb32a7c2-8f49-405f-948f-4200219ba41c/1312x894.webp?v=7df52b3038065294bcc91c56d60447ff","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-backus-mortada-basha-st-106302134.html","date":"","imported_at":"2026-10-05T12:44:03.725Z","location_precision":"street","details":"📐 100م² · 🛏 غرفتان · 🛁 حمام\nريسبشن قطعتان · أسانسير · عدادات كاملة · مدخل شيك وأمن\nI-Broker · ياسمين يوسف · مرجع 6ES1TED39B4SGPT9BGG4PKYHCG\n✅ غير مفروشة · إيجار شهري مؤكد من صفحة الإعلان\nتاريخ النشر الدقيق غير ظاهر؛ الصفحة تذكر منذ شهر. العنوان يصنفه شدس والوصف المكاني باكوس، يلزم تأكيد العنوان مع المعلن.\n⌖ نقطة مرجعية على شارع مرتضى عند هاني وياسر؛ ليست موقع الشقة أو المبنى. OSM node 9710489317: https://www.openstreetmap.org/node/9710489317","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-94633532","price":10000,"area":"ميامي","address":"متفرع من خالد بن الوليد · دور مرتفع وليس الأخير","latitude":31.265024185180664,"longitude":29.994457244873047,"image":"https://static.shared.propertyfinder.eg/media/images/listing/GKMH1NW0GZWQN8DXC5D6TSV6MR/c82488fb-ee75-4d01-8d78-01de6dca0d0c/1312x894.webp?v=6661a19d4b805f46adebbc91c67f73b7","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-miami-khaled-ibn-al-walid-st-94633532.html","date":"","imported_at":"2026-10-05T12:44:03.725Z","location_precision":"area","details":"📐 110م² · 🛏 3 غرف · 🛁 حمام\nريسبشن 3 قطع · أسانسير · فيو مفتوح · عدادات كاملة · مرخصة، بناء 2008\nRE/MAX Avalon · أحمد ماهر · كود 037050\n✅ غير مفروشة · إيجار شهري مؤكد من صفحة الإعلان\nتاريخ النشر الدقيق غير ظاهر؛ الصفحة تذكر منذ شهرين. تأكيد استمرار التوافر مع المعلن.\n⌖ مرجع منطقة ميامي المعتمد سابقاً في الشيت من Property Finder؛ ليس موقع المبنى أو الشارع بالتحديد.","terms":"💳 شهر مقدم + شهران تأمين + شهر عمولة"},
+{"id":"pf-83137674","price":7500,"area":"سيدي بشر","address":"شارع محمد نجيب · خطوات من البحر · الدور الخامس","latitude":31.255647659301758,"longitude":29.983051300048828,"image":"https://static.shared.propertyfinder.eg/media/images/listing/Y4G1RYGG87P372S1H4ZHC9T47C/6bf5f717-3a29-413a-a41b-992071338b39/1312x894.webp?v=3e79696503f7ea3bd5fa675c48120f7c","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-sidi-beshr-mohammad-ngeeb-street-83137674.html","date":"","imported_at":"2026-10-06T03:10:42.046Z","location_precision":"area","details":"📐 80م² · 🛏 غرفتان · 🛁 حمام\nريسبشن قطعتان · الدور الخامس في عمارة 10 أدوار · فيو مفتوح · مرخصة\nInspire Homes · سما إسماعيل · كود 06313\n✅ غير مفروشة · السعر يشمل دواليب المطبخ · إيجار شهري مؤكد من صفحة الإعلان الأصلية\nتاريخ النشر الدقيق غير ظاهر؛ الصفحة تذكر منذ 3 أشهر. متاحة من 15 يونيو 2026 حسب المصدر؛ أكد استمرار التوافر مع المعلن.\n⌖ مرجع منطقة سيدي بشر المعتمد سابقاً في الشيت من Property Finder؛ ليس موقع المبنى أو شارع محمد نجيب بالتحديد.","terms":"💳 شهر مقدم + شهر تأمين + شهر عمولة"},
+{"id":"pf-8214376","price":8000,"area":"السيوف","address":"شارع الترام · بين الإقبال والسيوف · الدور 13","latitude":"","longitude":"","image":"https://static.shared.propertyfinder.eg/media/images/listing/01K9CJ1QMRKE5GTED6C81YE3DQ/0fada6b1-8a77-418f-83f1-eedfde0b8358/1312x894.webp","source_url":"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-awal-el-montazah-seyouf-8214376.html","date":"","imported_at":"2026-10-06T09:08:20.645Z","location_precision":"unresolved","details":"📐 120م² · 🛏 3 غرف · 🛁 حمام\nريسبشن 3 قطع · الدور 13 وليس الأخير · أسانسيران · بواب · جميع المرافق\nI-Broker · حبيبة أحمد · المرجع 01K9CJ1QMRKE5GTED6C81YE3DQ\n✅ غير مفروشة · إيجار شهري مؤكد من صفحة الإعلان الأصلية · 6 صور فعلية\nتاريخ النشر الدقيق غير ظاهر؛ الصفحة تذكر أكثر من 6 أشهر. متاحة من 6 نوفمبر 2025 حسب المصدر؛ أكد استمرار التوافر مع المعلن.\n⌖ تعذر تحديد نقطة موثقة للشارع أو المبنى؛ الإعلان يظهر ضمن قسم غير محدد الموقع.","terms":"💳 شهران مقدم + شهر تأمين + شهر عمولة"}]/*END*/;
+
+/* Listings Claude found on the listing sites that are not in the sheet yet. Kept on top of whatever the sheet returns. */
+var EXTRA=[
+ {id:"pf-70096525",price:10000,area:"سموحة",address:"كوبري ١٤ مايو · الدور الثامن",latitude:31.2112,longitude:29.9575,
+  image:"https://static.shared.propertyfinder.eg/media/images/listing/B22S4V43NM9PS244ZQZWHA6XEW/7b858d7a-9f20-417c-b7d8-4dbd8017fa9e/1312x894.webp",
+  source_url:"https://www.propertyfinder.eg/en/plp/rent/apartment-for-rent-alexandria-hay-sharq-smouha-14th-of-may-bridge-70096525.html",
+  date:"",imported_at:"2026-10-10T02:10:00+03:00",location_precision:"area",
+  details:"📐 96م² · 🛏 غرفتان · 🛁 حمام\n📍 كوبري ١٤ مايو · الدور الثامن من ١٠\n✅ غير مفروشة · مرجع 05812",
+  terms:"⚠ الإعلان منشور من حوالي ٥ شهور؛ اتأكد إنها لسه متاحة.",mine:true},
+/* Search of 10 Oct 2026 on Bayut (same ads as Dubizzle): unfurnished, up to 15,000. Furnished-in-description and commercial-use ads left out. */
+ {"id": "bayut-504150585", "price": 15000, "area": "ميامي", "address": "قريبة من البحر وشارع ٤٥", "latitude": 31.2650242, "longitude": 29.9944572, "image": "https://images.bayut.eg/thumbnails/50622819-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504150585.html", "date": "2026-09-24", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 160م² · 🛏 3 غرف · 🛁 حمامان\n📍 قريبة من البحر وشارع ٤٥\nتشطيب سوبر لوكس · أسانسيرين · مباني ٢٠١٥\n✅ غير مفروشة · منشور 2026-09-24 · السفير للتسويق العقاري\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ١٥٬٠٠٠ ج حسب الإعلان", "mine": false},
+ {"id": "bayut-504210060", "price": 14000, "area": "سموحة", "address": "تعاونيات سموحة · قرب شارع جاردن سيتي ومديرية الأمن", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51431441-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504210060.html", "date": "2026-10-05", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 تعاونيات سموحة · قرب شارع جاردن سيتي ومديرية الأمن\nتشطيب سوبر لوكس · أسانسير · أمن · العدادات كاملة\n✅ غير مفروشة · منشور 2026-10-05 · الفردوس العقارية\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ١٤٬٠٠٠ ج حسب الإعلان", "mine": false},
+ {"id": "bayut-209147497", "price": 10000, "area": "العصافرة", "address": "شارع جمال عبد الناصر · خلف أسواق الشريف وكرم الشام", "latitude": 31.2722, "longitude": 30.0048, "image": "https://images.bayut.eg/thumbnails/51420670-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-209147497.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 140م² · 🛏 4 غرف · 🛁 حمامان\n📍 شارع جمال عبد الناصر · خلف أسواق الشريف وكرم الشام\nالدور الرابع · أسانسيرين · ٣ ريسبشن · العدادات كاملة\n✅ غير مفروشة · منشور 2026-10-04 · الإعلان بيقول من المالك مباشرة\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504227790", "price": 12000, "area": "ثروت", "address": "ثروت · قرب سان ستيفانو", "latitude": 31.2478, "longitude": 29.9722, "image": "https://images.bayut.eg/thumbnails/51739473-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504227790.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 90م² · 🛏 غرفتان · 🛁 حمام\n📍 ثروت · قرب سان ستيفانو\nالدور التاني · أسانسير · مطبخ بدواليب بس\n✅ غير مفروشة · منشور 2026-10-08 · بيت الريادة\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504215136", "price": 10000, "area": "جليم", "address": "طريق الجيش · شارع زهران رشدي", "latitude": 31.2412, "longitude": 29.9588, "image": "https://images.bayut.eg/thumbnails/51494340-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504215136.html", "date": "2026-10-06", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 120م² · 🛏 3 غرف · 🛁 حمام\n📍 طريق الجيش · شارع زهران رشدي\nريسبشن قطعتين · بلكونة · مرخصة · أمن\n✅ غير مفروشة · منشور 2026-10-06 · ريماكس أفالون\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-209139103", "price": 15000, "area": "كفر عبده", "address": "كفر عبده", "latitude": 31.2242, "longitude": 29.9598, "image": "https://images.bayut.eg/thumbnails/51280064-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-209139103.html", "date": "2026-10-03", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 160م² · 🛏 3 غرف · 🛁 حمامان\n📍 كفر عبده\nالدور الرابع · أسانسير · بلكونة · غاز طبيعي · أجهزة مطبخ بيلت إن\n✅ غير مفروشة · منشور 2026-10-03 · عبده زيكو\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504041857", "price": 12000, "area": "كفر عبده", "address": "كفر عبده · قرب دينو ماركت · متفرع من خليل الخياط", "latitude": 31.2242, "longitude": 29.9598, "image": "https://images.bayut.eg/thumbnails/49213807-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504041857.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 130م² · 🛏 3 غرف · 🛁 حمام\n📍 كفر عبده · قرب دينو ماركت · متفرع من خليل الخياط\nريسبشن قطعتين\n✅ غير مفروشة · منشور 2026-10-08 · إيليت للتسويق العقاري\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504205301", "price": 15000, "area": "سيدي بشر", "address": "سيدي بشر بحري · أمام الهيلتون", "latitude": 31.2556477, "longitude": 29.9830513, "image": "https://images.bayut.eg/thumbnails/51375358-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504205301.html", "date": "2026-10-05", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 120م² · 🛏 غرفتان · 🛁 حمامان\n📍 سيدي بشر بحري · أمام الهيلتون\nالدور السادس من ١١ · فيو مفتوح · أمن\n✅ غير مفروشة · منشور 2026-10-05 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-209184088", "price": 13500, "area": "سموحة", "address": "شارع النصر · كمبوند لوتس جاردنز", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51761448-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-209184088.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 135م² · 🛏 3 غرف · 🛁 حمام\n📍 شارع النصر · كمبوند لوتس جاردنز\nقانون جديد · فتح الله ماركت جوه الكمبوند · أسانسيرات · أمن\n✅ غير مفروشة · منشور 2026-10-08 · محمد\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-208718943", "price": 11000, "area": "ميامي", "address": "شارع جمال عبد الناصر · قبل الأكاديمية البحرية · بعد ميدان جيهان", "latitude": 31.2650242, "longitude": 29.9944572, "image": "https://images.bayut.eg/thumbnails/49913233-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-208718943.html", "date": "2026-09-15", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 130م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع جمال عبد الناصر · قبل الأكاديمية البحرية · بعد ميدان جيهان\nتصلح لكل الأغراض · العدادات كاملة\n✅ غير مفروشة · منشور 2026-09-15 · مكتوب من المالك بدون وسيط\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر تأمين للسكني حسب الإعلان", "mine": false},
+ {"id": "bayut-504226710", "price": 11000, "area": "سموحة", "address": "سموحة · خطوات من فوزي معاذ", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51728050-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504226710.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 110م² · 🛏 غرفتان · 🛁 حمام\n📍 سموحة · خطوات من فوزي معاذ\nالدور الأول (سلم) · ريسبشن قطعتين\n✅ غير مفروشة · منشور 2026-10-08 · إيليت للتسويق العقاري\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504193277", "price": 15000, "area": "شدس / جناكليس", "address": "جناكليس · شارع الفتح · على محطة ترام جناكليس", "latitude": 31.2385, "longitude": 29.967, "image": "https://images.bayut.eg/thumbnails/51225667-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504193277.html", "date": "2026-10-01", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 125م² · 🛏 غرفتان · 🛁 حمام\n📍 جناكليس · شارع الفتح · على محطة ترام جناكليس\nالدور التالت من ١٥ · سوبر لوكس · أمن ٢٤ ساعة\n✅ غير مفروشة · منشور 2026-10-01 · مسكون\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504197330", "price": 14000, "area": "سموحة", "address": "تعاونيات سموحة", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51274421-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504197330.html", "date": "2026-10-03", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 112م² · 🛏 غرفتان · 🛁 حمام\n📍 تعاونيات سموحة\nالدور التالت · أسانسير · أمن ٢٤ ساعة\n✅ غير مفروشة · منشور 2026-10-03 · إيليت للتسويق العقاري\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504205321", "price": 12000, "area": "رشدي", "address": "شارع خليل المصري · قرب فيكتور عمانويل", "latitude": 31.228945, "longitude": 29.9514973, "image": "https://images.bayut.eg/thumbnails/51375628-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504205321.html", "date": "2026-10-05", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 65م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع خليل المصري · قرب فيكتور عمانويل\nالدور التالت والأخير (سلم) · فيو مفتوح · تراس\n✅ غير مفروشة · منشور 2026-10-05 · Alex Real Estate\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر عمولة", "mine": false},
+ {"id": "bayut-503134583", "price": 15000, "area": "كفر عبده", "address": "شارع سكينة بنت الحسين", "latitude": 31.2242, "longitude": 29.9598, "image": "https://images.bayut.eg/thumbnails/47651141-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-503134583.html", "date": "2026-09-30", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 135م² · 🛏 3 غرف · 🛁 حمامان\n📍 شارع سكينة بنت الحسين\nالدور الرابع من ٦ · أسانسير · مرخصة · أمن\n✅ غير مفروشة · منشور 2026-09-30 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504196857", "price": 12000, "area": "سموحة", "address": "تالت شارع من فوزي معاذ", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51268159-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504196857.html", "date": "2026-10-03", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 115م² · 🛏 3 غرف · 🛁 حمامان\n📍 تالت شارع من فوزي معاذ\nالدور الأول من ٦ · مرخصة · فيو مفتوح\n✅ غير مفروشة · منشور 2026-10-03 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504195933", "price": 15000, "area": "سيدي بشر", "address": "سيدي بشر · خطوات من شارع العيسوي", "latitude": 31.2556477, "longitude": 29.9830513, "image": "https://images.bayut.eg/thumbnails/51258484-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504195933.html", "date": "2026-10-03", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 165م² · 🛏 3 غرف · 🛁 حمامان\n📍 سيدي بشر · خطوات من شارع العيسوي\nالدور ١٤ من ١٦ · ٣ ريسبشن · فيو مفتوح\n✅ غير مفروشة · منشور 2026-10-03 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-503553027", "price": 15000, "area": "سابا باشا", "address": "سابا باشا · قريبة من البحر", "latitude": 31.2428, "longitude": 29.9612, "image": "https://images.bayut.eg/thumbnails/42877131-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-503553027.html", "date": "2026-10-05", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 175م² · 🛏 3 غرف · 🛁 حمامان\n📍 سابا باشا · قريبة من البحر\nالدور التاني · أسانسير · أرضيات خشب\n✅ غير مفروشة · منشور 2026-10-05 · بيت الريادة\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504192852", "price": 15000, "area": "بولكلي", "address": "شارع مصطفى كامل", "latitude": 31.2276123, "longitude": 29.9567118, "image": "https://images.bayut.eg/thumbnails/51216724-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504192852.html", "date": "2026-10-01", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 160م² · 🛏 3 غرف · 🛁 حمامان\n📍 شارع مصطفى كامل\nالدور ١١ · أسانسيرين · ٣ ريسبشن · فيو مفتوح\n✅ غير مفروشة · منشور 2026-10-01 · MD Real Estate\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504176417", "price": 15000, "area": "كفر عبده", "address": "كفر عبده", "latitude": 31.2242, "longitude": 29.9598, "image": "https://images.bayut.eg/thumbnails/50953850-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504176417.html", "date": "2026-09-29", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 135م² · 🛏 3 غرف · 🛁 حمامان\n📍 كفر عبده\nالدور الرابع · أسانسير\n✅ غير مفروشة · منشور 2026-09-29 · شطّي للعقارات\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504229202", "price": 15000, "area": "الشاطبي", "address": "الشاطبي · شارع شبرا / بورسعيد", "latitude": 31.2098, "longitude": 29.9162, "image": "https://images.bayut.eg/thumbnails/51760905-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504229202.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 الشاطبي · شارع شبرا / بورسعيد\nقانون جديد · الدور التالت\n✅ غير مفروشة · منشور 2026-10-08 · عقاري وان\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ١٥٬٠٠٠ ج حسب الإعلان", "mine": false},
+ {"id": "bayut-504228884", "price": 12000, "area": "ميامي", "address": "شارع جمال عبد الناصر · أمام الأكاديمية", "latitude": 31.2650242, "longitude": 29.9944572, "image": "https://images.bayut.eg/thumbnails/51754687-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504228884.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 130م² · 🛏 3 غرف · 🛁 حمام\n📍 شارع جمال عبد الناصر · أمام الأكاديمية\nالدور الخامس · أسانسيرين · أمن ٢٤ ساعة\n✅ غير مفروشة · منشور 2026-10-08 · إيليت للتسويق العقاري\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504053359", "price": 15000, "area": "سيدي بشر", "address": "شارع محمود العيسوي · سيدي بشر بحري", "latitude": 31.2556477, "longitude": 29.9830513, "image": "https://images.bayut.eg/thumbnails/49364541-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504053359.html", "date": "2026-10-07", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 175م² · 🛏 3 غرف · 🛁 حمامان\n📍 شارع محمود العيسوي · سيدي بشر بحري\nالدور السادس والأخير · معزول · ٤ ريسبشن\n✅ غير مفروشة · منشور 2026-10-07 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504217676", "price": 11500, "area": "كفر عبده", "address": "كفر عبده", "latitude": 31.2242, "longitude": 29.9598, "image": "https://images.bayut.eg/thumbnails/51617907-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504217676.html", "date": "2026-10-06", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 110م² · 🛏 غرفتان · 🛁 حمام\n📍 كفر عبده\nالدور التالت · فيو مفتوح · غاز طبيعي · أمن\n✅ غير مفروشة · منشور 2026-10-06 · وليد العبطان\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ١١٬٥٠٠ ج حسب الإعلان", "mine": false},
+ {"id": "bayut-504217668", "price": 15000, "area": "كفر عبده", "address": "كفر عبده", "latitude": 31.2242, "longitude": 29.9598, "image": "https://images.bayut.eg/thumbnails/51617915-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504217668.html", "date": "2026-10-06", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 110م² · 🛏 غرفتان · 🛁 حمام\n📍 كفر عبده\nقانون جديد · مطبخ بدواليب وتكييف · ٣ أسانسير · مولد\n✅ غير مفروشة · منشور 2026-10-06 · وليد العبطان\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ١٥٬٠٠٠ ج حسب الإعلان", "mine": false},
+ {"id": "bayut-504205029", "price": 15000, "area": "سان ستيفانو", "address": "سان ستيفانو · خطوات من البحر", "latitude": 31.2462, "longitude": 29.9672, "image": "https://images.bayut.eg/thumbnails/51371958-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504205029.html", "date": "2026-10-05", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 130م² · 🛏 3 غرف · 🛁 حمام\n📍 سان ستيفانو · خطوات من البحر\nالدور الخامس من ٨ · ٣ ريسبشن · بلكونة\n✅ غير مفروشة · منشور 2026-10-05 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 3 شهور مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504198884", "price": 15000, "area": "سان ستيفانو", "address": "سان ستيفانو · خطوات من البحر", "latitude": 31.2462, "longitude": 29.9672, "image": "https://images.bayut.eg/thumbnails/51298176-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504198884.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 130م² · 🛏 3 غرف · 🛁 حمام\n📍 سان ستيفانو · خطوات من البحر\nالدور الأول من ٨ · بلكونة · غاز طبيعي\n✅ غير مفروشة · منشور 2026-10-04 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 3 شهور مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504022636", "price": 13000, "area": "رشدي", "address": "رشدي", "latitude": 31.228945, "longitude": 29.9514973, "image": "https://images.bayut.eg/thumbnails/49124356-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504022636.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 رشدي\nسوبر لوكس · أسانسيرين · أول سكن\n✅ غير مفروشة · منشور 2026-10-04 · الأولى للعقارات\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 الوصف بيقول ١٤٬٠٠٠ والعنوان ١٣٬٠٠٠؛ اتأكد من السعر", "mine": false},
+ {"id": "bayut-504203061", "price": 12000, "area": "سموحة", "address": "سموحة · فيو مباشر على جامعة فاروس", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51342123-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504203061.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 100م² · 🛏 غرفتان · 🛁 حمام\n📍 سموحة · فيو مباشر على جامعة فاروس\nالدور ١٢ · أسانسير · باركيه · مطبخ بدواليب\n✅ غير مفروشة · منشور 2026-10-04 · فينيسيا العقارية\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504201876", "price": 13000, "area": "سموحة", "address": "سموحة · خطوات من مستشفى أندلسية", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51329541-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504201876.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 110م² · 🛏 غرفتان · 🛁 حمام\n📍 سموحة · خطوات من مستشفى أندلسية\nالدور العاشر · أسانسير · ريسبشن قطعتين\n✅ غير مفروشة · منشور 2026-10-04 · فينيسيا العقارية\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504201419", "price": 11000, "area": "ميامي", "address": "ميامي", "latitude": 31.2650242, "longitude": 29.9944572, "image": "https://images.bayut.eg/thumbnails/51324570-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504201419.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 130م² · 🛏 غرفتان · 🛁 حمام\n📍 ميامي\nالدور التاني من ١٠ · أسانسير · ٣ ريسبشن\n✅ غير مفروشة · منشور 2026-10-04 · Pure Home\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504197045", "price": 11000, "area": "سموحة", "address": "تالت شارع من فوزي معاذ", "latitude": 31.2153578, "longitude": 29.9529355, "image": "https://images.bayut.eg/thumbnails/51270143-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504197045.html", "date": "2026-10-03", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 115م² · 🛏 3 غرف · 🛁 حمام\n📍 تالت شارع من فوزي معاذ\nالدور الرابع من ٦ · مرخصة · فيو مفتوح\n✅ غير مفروشة · منشور 2026-10-03 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + شهر تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504195955", "price": 15000, "area": "بولكلي", "address": "شارع مصطفى كامل · قرب نادي القضاة", "latitude": 31.2276123, "longitude": 29.9567118, "image": "https://images.bayut.eg/thumbnails/51260232-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504195955.html", "date": "2026-10-03", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 160م² · 🛏 3 غرف · 🛁 حمامان\n📍 شارع مصطفى كامل · قرب نادي القضاة\nالدور ١١ · سوبر لوكس · أسانسيرين\n✅ غير مفروشة · منشور 2026-10-03 · السفير\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504229307", "price": 8000, "area": "ميامي", "address": "شارع جمال عبد الناصر · جنب أكاديمية ميامي", "latitude": 31.2650242, "longitude": 29.9944572, "image": "https://images.bayut.eg/thumbnails/51763904-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504229307.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 85م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع جمال عبد الناصر · جنب أكاديمية ميامي\nالدور ١٢ · أسانسير · عدادات منفصلة\n✅ غير مفروشة · منشور 2026-10-08 · First Choice\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ٨٬٠٠٠ ج حسب الإعلان", "mine": false},
+ {"id": "bayut-502566430", "price": 8000, "area": "كامب شيزار", "address": "كامب شيزار · خطوات من البحر والترام", "latitude": 31.2132, "longitude": 29.9228, "image": "https://images.bayut.eg/thumbnails/30929759-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-502566430.html", "date": "2026-10-08", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 70م² · 🛏 غرفتان · 🛁 حمام\n📍 كامب شيزار · خطوات من البحر والترام\nقانون جديد · الدور السادس · أسانسير\n✅ غير مفروشة · منشور 2026-10-08 · باجيرا للعقارات\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 2 شهور مقدم + 2 شهور تأمين + شهر عمولة", "mine": false},
+ {"id": "bayut-504224132", "price": 9000, "area": "ميامي", "address": "شارع جمال عبد الناصر · قرب سيدي بشر", "latitude": 31.2650242, "longitude": 29.9944572, "image": "https://images.bayut.eg/thumbnails/51693940-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504224132.html", "date": "2026-10-07", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 120م² · 🛏 3 غرف · 🛁 حمام\n📍 شارع جمال عبد الناصر · قرب سيدي بشر\nالدور التالت · سوبر لوكس · مطبخ أمريكاني · مرخصة\n✅ غير مفروشة · منشور 2026-10-07 · First Choice\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 مقدم ٩٬٠٠٠ ج + شهر عمولة", "mine": false},
+ {"id": "bayut-504218036", "price": 9000, "area": "كامب شيزار", "address": "كامب شيزار", "latitude": 31.2132, "longitude": 29.9228, "image": "https://images.bayut.eg/thumbnails/51622213-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504218036.html", "date": "2026-10-06", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 80م² · 🛏 غرفتان · 🛁 حمام\n📍 كامب شيزار\nالدور الأول\n✅ غير مفروشة · منشور 2026-10-06 · الأولى للعقارات\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-504218031", "price": 8500, "area": "الإبراهيمية", "address": "الإبراهيمية", "latitude": 31.2160314, "longitude": 29.9253611, "image": "https://images.bayut.eg/thumbnails/51622203-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504218031.html", "date": "2026-10-06", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 70م² · 🛏 غرفة · 🛁 حمام\n📍 الإبراهيمية\nأرضي مرتفع · فيو على الشارع · ستوديو حسب الوصف\n✅ غير مفروشة · منشور 2026-10-06 · الأولى للعقارات\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-209162700", "price": 5000, "area": "فيكتوريا", "address": "شارع الملك حفني · أمام المترو", "latitude": 31.2505, "longitude": 29.98, "image": "https://images.bayut.eg/thumbnails/51498516-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-209162700.html", "date": "2026-10-06", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 80م² · 🛏 غرفتان · 🛁 حمام\n📍 شارع الملك حفني · أمام المترو\nالعدادات كاملة\n✅ غير مفروشة · منشور 2026-10-06 · ملك\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "", "mine": false},
+ {"id": "bayut-502871457", "price": 9000, "area": "شدس", "address": "شوتس · قرب الترام", "latitude": 31.2400777, "longitude": 29.971308, "image": "https://images.bayut.eg/thumbnails/34295949-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-502871457.html", "date": "2026-10-05", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 70م² · 🛏 غرفتان · 🛁 حمام\n📍 شوتس · قرب الترام\nالدور الأول · جاهزة للسكن\n✅ غير مفروشة · منشور 2026-10-05 · بيت الريادة\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 الوصف بيقول ٧٬٠٠٠ قابل للتفاوض والعنوان ٩٬٠٠٠", "mine": false},
+ {"id": "bayut-504199149", "price": 6000, "area": "سيدي بشر", "address": "سيدي بشر بحري · متفرع من جمال عبد الناصر", "latitude": 31.2556477, "longitude": 29.9830513, "image": "https://images.bayut.eg/thumbnails/51301204-800x600.jpeg", "source_url": "https://www.bayut.eg/en/property/details-504199149.html", "date": "2026-10-04", "imported_at": "2026-10-10T03:10:00+03:00", "location_precision": "area", "details": "📐 70م² · 🛏 غرفتان · 🛁 حمام\n📍 سيدي بشر بحري · متفرع من جمال عبد الناصر\nالدور ١١ والأخير · معزول · فيو مفتوح\n✅ غير مفروشة · منشور 2026-10-04 · Inspire Homes\n⌖ الموقع على الخريطة مركز المنطقة تقريبياً؛ مش عنوان المبنى.", "terms": "💳 شهر مقدم + شهر تأمين + شهر عمولة", "mine": false}
+];
+/* Units that a second listing site now shows as no longer available. */
+var FLAGS={"88123226":"نفس الوحدة ظاهرة على بيوت إنها اتأجرت"};
+/* Marked 🆕 in the sheet's guide tab. */
+var NEW_IDS=["206242647","209086459","504058865","504172216","504048927","209058856","504195614"];
+
+var fmt=new Intl.NumberFormat("ar-EG");
+var state={max:15000,rooms:0,onlyNew:false,onlyFav:false,fav:[],sort:"price",area:null,bounds:null};
+var calc={advance:1,deposit:1,broker:100};
+try{var sv3=localStorage.getItem("alexf3"),sv=JSON.parse(sv3||localStorage.getItem("alexf2")||"null");if(sv){(sv3?["max","rooms","onlyNew","sort"]:["rooms","onlyNew","sort"]).forEach(function(k){if(k in sv)state[k]=sv[k]});if(Array.isArray(sv.fav))state.fav=sv.fav.map(String)}}catch(e){}
+function save(){try{localStorage.setItem("alexf3",JSON.stringify({max:state.max,rooms:state.rooms,onlyNew:state.onlyNew,sort:state.sort,fav:state.fav}))}catch(e){}}
+
+function $(s){return document.querySelector(s)}
+document.addEventListener("error",function(e){var t=e.target,l=t&&t.dataset&&t.dataset.local;if(t.tagName=="IMG"&&l&&t.getAttribute("src")!=l){e.stopImmediatePropagation();t.src=l}},true);
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function n(v){return fmt.format(v)}
+function median(a){if(!a.length)return 0;var s=a.slice().sort(function(x,y){return x-y}),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2}
+function isFav(id){return state.fav.indexOf(String(id))>-1}
+function toNum(s){if(typeof s=="number")return s;var t=String(s||"").replace(/[٠-٩]/g,function(d){return"٠١٢٣٤٥٦٧٨٩".indexOf(d)}).replace(/٫/g,".").replace(/[٬,\s]/g,"");var v=parseFloat(t);return isNaN(v)?null:v}
+
+/* ---------- Normalizing a sheet row ---------- */
+function roomsOf(t){if(/غرفتان|غرفتين/.test(t))return 2;var m=t.match(/(\d+)\s*غرف/);if(m)return+m[1];if(/غرفة/.test(t))return 1;return 0}
+function bathsOf(t){if(/حمامان|حمامين/.test(t))return 2;var m=t.match(/(\d+)\s*حمام/);if(m)return+m[1];return/حمام/.test(t)?1:0}
+function months(t,word){var m=t.match(new RegExp("(شهران|شهرين|شهر|(\\d+)\\s*شهور?)\\s*"+word));if(!m)return null;if(m[2])return+m[2];return/شهران|شهرين/.test(m[1])?2:1}
+/* Photos load from the ad itself. Inside Claude, other sites' images are blocked, so the page falls back to a copy of the main photo (img/<id>.jpg). */
+var PHOTOS=["206242647", "209058856", "209086459", "504002561", "504048927", "504058865", "504121843", "504172216", "504172563", "504188851", "504195614", "82608137", "88123226", "91576179", "98551447", "bayut-208718943", "bayut-209139103", "bayut-209147497", "bayut-209162700", "bayut-209184088", "bayut-502566430", "bayut-502871457", "bayut-503134583", "bayut-503553027", "bayut-504022636", "bayut-504041857", "bayut-504053359", "bayut-504068077", "bayut-504150585", "bayut-504176417", "bayut-504192852", "bayut-504193277", "bayut-504195933", "bayut-504195955", "bayut-504196857", "bayut-504197045", "bayut-504197330", "bayut-504198884", "bayut-504199149", "bayut-504201419", "bayut-504201876", "bayut-504203061", "bayut-504205029", "bayut-504205301", "bayut-504205321", "bayut-504210060", "bayut-504215136", "bayut-504217668", "bayut-504217676", "bayut-504218031", "bayut-504218036", "bayut-504224132", "bayut-504226710", "bayut-504227790", "bayut-504228884", "bayut-504229202", "bayut-504229307", "pf-106302134", "pf-107966292", "pf-108518436", "pf-110742821", "pf-114612152", "pf-70096525", "pf-8214376", "pf-83137674", "pf-91580545", "pf-94633532", "pf-95199310", "pf-97144555"];
+function norm(r,firstBatch){
+ var id=String(r.id||"").trim();if(!id)return null;
+ var price=toNum(r.price);if(!price)return null;
+ var det=String(r.details||""),terms=String(r.terms||""),line0=det.split("\n")[0];
+ var sz=line0.match(/([\d٠-٩]+)\s*م²/),rm=(line0.match(/🛏\s*([^·\n]+)/)||[])[1]||"",bt=(line0.match(/🛁\s*([^·\n]+)/)||[])[1]||"";
+ var src=String(r.source_url||""),host=/dubizzle/.test(src)?"دوبيزل":/propertyfinder/.test(src)?"بروبرتي فايندر":/bayut/.test(src)?"بيوت":"الإعلان";
+ var area=String(r.area||"").trim(),zone=/^شدس/.test(area)?"شدس":area;
+ var lat=toNum(r.latitude),lng=toNum(r.longitude);
+ var extras=det.split("\n").slice(1).filter(function(l){return l&&l.indexOf("⌖")!==0}).map(function(l){return l.replace(/^[📍✅🛗🪜🌊🔗]\s*/u,"")});
+ return{id:id,area:area,zone:zone,price:price,size:sz?toNum(sz[1]):0,rooms:roomsOf(rm),baths:bathsOf(bt)||1,roomsNote:/مقفول/.test(rm)?rm.trim():"",
+  address:String(r.address||""),lat:lat,lng:lng,img:String(r.image||"")||(PHOTOS.indexOf(id)>-1?"img/"+id+".jpg":""),local:PHOTOS.indexOf(id)>-1?"img/"+id+".jpg":"",url:src,host:host,extras:extras,terms:terms.replace(/^💳\s*/,""),
+  near:/🟠/.test(terms+det),isNew:NEW_IDS.indexOf(id)>-1||(firstBatch&&r.imported_at&&String(r.imported_at)>firstBatch),
+  adv:months(terms,"مقدم"),dep:months(terms,"تأمين"),bro:months(terms,"عمولة"),flag:FLAGS[id]||"",mine:!!r.mine,precise:r.location_precision=="street",phone:String(r.phone||r.whatsapp||"").trim(),code:((det.match(/كود\s*(?:الوحدة\s*)?([A-Za-z0-9\-]+)/)||[])[1]||"")};
+}
+function build(rows){
+ var stamps=rows.map(function(r){return String(r.imported_at||"")}).filter(Boolean).sort();
+ var first=stamps.length?stamps[0]:"";
+ var list=rows.map(function(r){return norm(r,first)}).filter(function(x){return x&&x.size>0});
+ var ids={};list.forEach(function(x){ids[x.id]=1});
+ EXTRA.forEach(function(r){if(!ids[r.id]){var x=norm(r,"");if(x){x.isNew=true;list.push(x)}}});
+ return list;
+}
+var data=build(FALLBACK),live=false,lastSync=SNAPSHOT;
+
+/* ---------- Refresh from the sheet ---------- */
+function parseCSV(t){var rows=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];
+ if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}
+ else if(c=='"')q=true;else if(c==","){row.push(f);f=""}else if(c=="\n"||c=="\r"){if(c=="\r"&&t[i+1]=="\n")i++;row.push(f);rows.push(row);row=[];f=""}else f+=c}
+ if(f||row.length){row.push(f);rows.push(row)}return rows}
+function rowsFromTable(tbl){var h=tbl[0].map(function(x){return String(x).trim()});return tbl.slice(1).map(function(r){var o={};h.forEach(function(k,i){o[k]=r[i]==null?"":r[i]});return o})}
+function loadScript(src){return new Promise(function(ok,bad){var s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=bad;document.head.appendChild(s)})}
+
+/* Inside Claude: read the sheet through the viewer's Google Drive connector. */
+var mcpP=(window.claude&&window.claude.use)?window.claude.use("mcp").catch(function(){return null}):Promise.resolve(null);
+function viaDrive(mcp){
+ return mcp.callTool("Google Drive","download_file_content",{fileId:SHEET_ID,exportMimeType:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},{cache:false})
+ .then(function(res){
+  var p=res.payload;if(typeof p=="string"){try{p=JSON.parse(p)}catch(e){}}
+  var b64=p&&p.content;if(!b64)throw{code:"bad_shape"};
+  return(window.XLSX?Promise.resolve():loadScript("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js")).then(function(){
+   var wb=XLSX.read(b64,{type:"base64"});var ws=wb.Sheets[DATA_TAB];if(!ws)throw{code:"no_tab"};
+   return rowsFromTable(XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:""}));
+  });
+ });
+}
+/* On a normal website: read the published sheet directly. */
+function viaCSV(){return fetch(CSV_URL+"&t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw{code:"http"};return r.text()}).then(function(t){return rowsFromTable(parseCSV(t))})}
+
+function say(t,err){var m=$("#msg");m.hidden=!t;m.textContent=t||"";m.className="msg"+(err?" err":"")}
+function refresh(manual){
+ var b=$("#refresh");b.disabled=true;b.setAttribute("aria-busy","true");if(manual)say("بقرا الشيت…");
+ return mcpP.then(function(mcp){return mcp?viaDrive(mcp):viaCSV()}).then(function(rows){
+  if(manual)say("بقارن بالنسخة اللي معايا…");
+  var list=build(rows);if(!list.length)throw{code:"empty"};
+  var old={};data.forEach(function(x){old[x.id]=x});var cur={};list.forEach(function(x){cur[x.id]=1});
+  var c={added:[],price:[],removed:data.filter(function(x){return!cur[x.id]})};
+  list.forEach(function(x){var o=old[x.id];if(!o){x.isNew=true;x.fresh=true;c.added.push(x)}else{x.fresh=o.fresh;x.was=o.was;if(o.price!==x.price){x.was=o.price;c.price.push(x)}}});
+  placeAll(list);data=list;live=true;lastSync=new Date().toISOString();render();setStatus();saveSeen(list);
+  if(manual){showChanges(c);say(c.added.length||c.price.length||c.removed.length?"اتحدّث · "+n(list.length)+" شقة":"اتحدّث · "+n(list.length)+" شقة · مفيش تغيير من آخر مرة")}
+ }).catch(function(e){
+  var c=e&&e.code;
+  var t=c=="server_not_connected"?"اربط Google Drive من إعدادات Claude ← الموصّلات علشان التحديث يشتغل.":
+   c=="needs_reauth"?"اعمل إعادة ربط لـ Google Drive من إعدادات Claude ← الموصّلات.":
+   c=="not_in_manifest"||c=="approval_required"||c=="consent_required"?"التحديث محتاج موافقتك على استخدام Google Drive. دوس تاني ووافق.":
+   c=="server_unavailable"||c=="upstream_error"?"Google Drive مش بيرد دلوقتي. جرّب كمان دقيقة.":
+   c=="no_tab"?"مش لاقي تبويب «"+DATA_TAB+"» في الشيت.":
+   c=="http"?"الشيت مش متاح للقراءة. اتأكد إنه منشور للعامة.":
+   "ما قدرتش أقرا الشيت دلوقتي. البيانات المعروضة من آخر نسخة.";
+  if(manual)say(t,true);setStatus(true);
+ }).then(function(){b.disabled=false;b.removeAttribute("aria-busy")});
+}
+function setStatus(err){
+ var p=$("#status");p.className="pill"+(live?" live":"")+(err&&!live?" err":"");
+ var d=new Date(lastSync),t=d.toLocaleString("ar-EG",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"});
+ $("#statusText").textContent=(live?"محدّث من الشيت · ":"نسخة محفوظة · ")+t;
+ $("#updated").textContent="آخر تحديث: "+t;
+}
+
+/* ---------- Filtering ---------- */
+function entryCost(x){var a=x.adv!=null?x.adv:1,d=x.dep!=null?x.dep:1,b=x.bro!=null?x.bro:1;return x.price*(a+d+b)}
+function baseFiltered(){return data.filter(function(x){return x.price<=state.max&&(!state.rooms||(state.rooms>=3?x.rooms>=3:x.rooms==state.rooms))&&(!state.onlyNew||x.isNew)&&(!state.onlyFav||isFav(x.id))})}
+function sorted(list){var k=state.sort;return list.slice().sort(function(a,b){
+ if(k=="ppm")return a.price/a.size-b.price/b.size;if(k=="size")return b.size-a.size||a.price-b.price;
+ if(k=="new")return(b.isNew-a.isNew)||a.price-b.price;if(k=="entry")return entryCost(a)-entryCost(b);
+ return a.price-b.price||b.size-a.size})}
+
+/* ---------- Interactive map (Leaflet) ---------- */
+var map=null,mLayer=null,markers={},progMove=false,ZOOM_PINS=15,baseLayer=null;
+var FALLBACK_POS={"المنشية":[31.2005,29.8975],"السيوف":[31.2470,29.9930]};
+var COAST=[[31.2142,29.8856],[31.2100,29.8872],[31.2058,29.8902],[31.2022,29.8932],[31.2003,29.8962],[31.2014,29.9005],[31.2042,29.9048],[31.2088,29.9078],[31.2124,29.9096],[31.2108,29.9128],[31.2120,29.9172],[31.2158,29.9228],[31.2194,29.9284],[31.2230,29.9342],[31.2272,29.9398],[31.2312,29.9448],[31.2342,29.9478],[31.2372,29.9502],[31.2400,29.9532],[31.2428,29.9568],[31.2452,29.9610],[31.2482,29.9658],[31.2522,29.9716],[31.2570,29.9782],[31.2622,29.9852],[31.2675,29.9918],[31.2722,29.9985],[31.2762,30.0045],[31.2805,30.0110],[31.2842,30.0170],[31.2890,30.0205],[31.2930,30.0260]];
+function placeAll(list){
+ var groups={};
+ list.forEach(function(x){var lat=x.lat,lng=x.lng;if(!lat||!lng){var f=FALLBACK_POS[x.zone];if(!f)return;lat=f[0];lng=f[1];x.approxOnly=true}
+  var k=lat.toFixed(4)+","+lng.toFixed(4);(groups[k]=groups[k]||[]).push([x,lat,lng])});
+ Object.keys(groups).forEach(function(k){var g=groups[k];g.forEach(function(e,i){
+  var x=e[0];if(g.length==1){x.pos=[e[1],e[2]];return}
+  var a=i*2*Math.PI/g.length,r=0.0009+0.0002*(g.length>6?1:0);x.pos=[e[1]+r*Math.sin(a),e[2]+r*Math.cos(a)/0.856]})});
+}
+function short(p){return(p%1000?n(+(p/1000).toFixed(1)):n(p/1000))+" ألف"}
+function initMap(){
+ if(!window.L){var nn=$("#mapNote");nn.hidden=false;nn.textContent="الخريطة ما اتحمّلتش. الشقق كلها موجودة تحت.";$("#map").style.height="120px";return}
+ map=L.map("map",{zoomControl:false,attributionControl:true,minZoom:11,maxZoom:18,zoomSnap:0.5,tap:true,worldCopyJump:false,maxBounds:[[31.15,29.84],[31.34,30.08]],maxBoundsViscosity:0.9});
+ L.control.zoom({position:"topright",zoomInTitle:"قرّب",zoomOutTitle:"بعّد"}).addTo(map);
+ map.attributionControl.setPrefix(false);
+ map.attributionControl.addAttribution('© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">مساهمو OpenStreetMap</a>');
+ $("#map").classList.add("no-tiles");
+ mLayer=L.layerGroup().addTo(map);
+ map.on("zoomend",function(){drawMarkers(lastMarkerList)});
+ map.on("moveend",function(){if(progMove){progMove=false;return}$("#searchHere").hidden=false});
+ map.on("popupclose",function(){selMarker(null)});
+ areaLabels();
+ var c=$("#map");function zcls(){var z=map.getZoom();c.classList.toggle("lbl-lo",z<ZOOM_PINS);c.classList.toggle("lbl-mid",z<16)}
+ map.on("zoomend",zcls);zcls();
+ fitTo(data,false);
+ var done=false;
+ fetch("alex-streets.json").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){done=true;streetBase(j)}).catch(function(){if(!done)tileBase()});
+}
+/* ---------- Street map drawn in the page from OpenStreetMap data (alex-streets.json) ---------- */
+function lbl(t,ll,cls,pane){return L.marker(ll,{interactive:false,keyboard:false,pane:pane||"labels",icon:L.divIcon({className:"lbl "+(cls||""),html:"<span>"+esc(t)+"</span>",iconSize:[0,0]})}).addTo(map)}
+function areaLabels(){
+ map.createPane("labels");map.getPane("labels").style.zIndex=450;map.getPane("labels").style.pointerEvents="none";
+ lbl("البحر المتوسط",[31.2640,29.9460],"seaname");
+ [["محطة الرمل",31.2008,29.9040,1],["المنشية",31.1975,29.8960],["الشاطبي",31.2088,29.9160],["كامب شيزار",31.2125,29.9222],["الإبراهيمية",31.2150,29.9262],
+  ["سبورتنج",31.2182,29.9318],["كليوباترا",31.2218,29.9368],["سيدي جابر",31.2190,29.9420,1],["مصطفى كامل",31.2268,29.9455],["سموحة",31.2085,29.9500,1],
+  ["ستانلي",31.2338,29.9478],["بولكلي",31.2262,29.9540],["رشدي",31.2302,29.9512],["كفر عبده",31.2232,29.9605],["فلمنج",31.2352,29.9575],
+  ["جليم",31.2402,29.9555],["سابا باشا",31.2425,29.9605],["جناكليس",31.2382,29.9665],["شدس",31.2410,29.9718],["سان ستيفانو",31.2463,29.9668],
+  ["ثروت",31.2478,29.9728],["فيكتوريا",31.2500,29.9800],["سيدي بشر",31.2555,29.9840,1],["ميامي",31.2648,29.9950,1],["العصافرة",31.2718,30.0055,1],
+  ["المندرة",31.2775,30.0150],["المنتزه",31.2870,30.0240,1]].forEach(function(z){lbl(z[0],[z[1],z[2]],z[3]?"major":"minor")});
+}
+function decPoly(s,X,Y){var i=0,la=0,lo=0,L=s.length;while(i<L){var r=0,sh=0,b;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);la+=r&1?~(r>>1):r>>1;r=0;sh=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);lo+=r&1?~(r>>1):r>>1;
+ var lat=la/1e5,sn=Math.sin(lat*Math.PI/180);X.push((lo/1e5+180)/360*256);Y.push((0.5-Math.log((1+sn)/(1-sn))/(4*Math.PI))*256)}}
+var ORDER=["sea","isl","water","park","cem","beach","uni","hosp","coast","w","r","t","s","p","m","rail","tram"];
+var AREA={sea:1,isl:1,water:1,park:1,cem:1,beach:1,uni:1,hosp:1};
+var ROADS=["w","r","t","s","p","m"];
+/* road width in px at zoom 11…18 */
+var WID={m:[1.6,2.2,3.2,4.8,7,9.5,13,17],p:[1.3,1.9,2.8,4.2,6.2,8.6,11.5,15],s:[.9,1.3,2.1,3.4,5.2,7.4,10,13],t:[.6,.9,1.6,2.7,4.2,6.2,8.4,11],r:[0,0,.5,1.1,2.3,4,6.2,8.6],w:[0,0,.5,1,2,3.6,5.4,7.4]};
+function wAt(c,z){var a=WID[c];return a[Math.max(0,Math.min(7,z-11))]}
+function pal(){var cs=getComputedStyle(document.documentElement),g=function(k){return cs.getPropertyValue(k).trim()};
+ return{land:g("--land"),sea:g("--sea-soft"),coast:g("--sea"),water:g("--sea-soft"),park:g("--park"),cem:g("--cem"),beach:g("--sand"),uni:g("--campus"),hosp:g("--hosp"),isl:g("--land"),
+  road:g("--road"),mid:g("--road-mid"),major:g("--road-major"),cas:g("--case"),rail:g("--rail"),tram:g("--tram"),tramInk:g("--tram-ink")}}
+function streetBase(j){
+ var X=[],Y=[],F=[],ci={};ORDER.forEach(function(k,i){ci[k]=i});
+ function add(c,s,nm){var a=X.length;decPoly(s,X,Y);var b=X.length;if(b-a<2)return;
+  var x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(var k=a;k<b;k++){if(X[k]<x0)x0=X[k];if(X[k]>x1)x1=X[k];if(Y[k]<y0)y0=Y[k];if(Y[k]>y1)y1=Y[k]}
+  F.push({c:ci[c],a:a,b:b,n:nm==null?-1:nm,x0:x0,y0:y0,x1:x1,y1:y1})}
+ add("sea",j.sea);(j.isl||[]).forEach(function(s){add("isl",s)});if(j.coast)add("coast",j.coast);
+ Object.keys(j.ways).forEach(function(c){if(ci[c]==null)return;j.ways[c].forEach(function(w){if(typeof w=="string")add(c,w);else add(c,w[0],w[1])})});
+ X=Float64Array.from(X);Y=Float64Array.from(Y);
+ /* bucket every feature by the zoom-14 tiles its box touches */
+ var B={},M=0.02;F.forEach(function(f,i){var bx0=Math.floor((f.x0-M)*64),bx1=Math.floor((f.x1+M)*64),by0=Math.floor((f.y0-M)*64),by1=Math.floor((f.y1+M)*64);
+  for(var bx=bx0;bx<=bx1;bx++)for(var by=by0;by<=by1;by++){var k=bx*65536+by;(B[k]=B[k]||[]).push(i)}});
+ var stamp=new Uint32Array(F.length),tick=0,P=pal();
+ function query(x,y,z){tick++;var out=[],bx0,bx1,by0,by1;
+  if(z<=14){var f=1<<(14-z);bx0=x*f;bx1=bx0+f-1;by0=y*f;by1=by0+f-1}else{var d=1<<(z-14);bx0=bx1=Math.floor(x/d);by0=by1=Math.floor(y/d)}
+  for(var bx=bx0;bx<=bx1;bx++)for(var by=by0;by<=by1;by++){var l=B[bx*65536+by];if(!l)continue;for(var q=0;q<l.length;q++){var i=l[q];if(stamp[i]!==tick){stamp[i]=tick;out.push(i)}}}
+  return out.sort(function(a,b){return F[a].c-F[b].c||a-b})}
+ var Grid=L.GridLayer.extend({createTile:function(co){
+  var cv=document.createElement("canvas"),r=Math.min(2,window.devicePixelRatio||1);cv.width=cv.height=256*r;
+  var ctx=cv.getContext("2d");ctx.scale(r,r);var z=co.z,sc=Math.pow(2,z),ox=co.x*256,oy=co.y*256;
+  ctx.fillStyle=P.land;ctx.fillRect(0,0,256,256);
+  var ids=query(co.x,co.y,z),tx0=co.x*256/sc,ty0=co.y*256/sc,tw=256/sc,pad=12/sc;
+  ids=ids.filter(function(i){var f=F[i];return f.x1>=tx0-pad&&f.x0<=tx0+tw+pad&&f.y1>=ty0-pad&&f.y0<=ty0+tw+pad});
+  function path(f,close){ctx.beginPath();ctx.moveTo(X[f.a]*sc-ox,Y[f.a]*sc-oy);for(var k=f.a+1;k<f.b;k++)ctx.lineTo(X[k]*sc-ox,Y[k]*sc-oy);if(close)ctx.closePath()}
+  ctx.lineJoin="round";ctx.lineCap="round";
+  var roads=[];
+  ids.forEach(function(i){var f=F[i],c=ORDER[f.c];
+   if(AREA[c]){if(z<13&&c!="sea"&&c!="isl"&&c!="water"&&(f.x1-f.x0)*sc<3&&(f.y1-f.y0)*sc<3)return;path(f,true);ctx.fillStyle=P[c];ctx.fill();return}
+   if(c=="coast"){path(f);ctx.strokeStyle=P.coast;ctx.globalAlpha=.35;ctx.lineWidth=z>=15?1.5:1;ctx.stroke();ctx.globalAlpha=1;return}
+   if(WID[c]){if(wAt(c,z)>0)roads.push(f);return}
+   if(c=="rail"){path(f);ctx.strokeStyle=P.rail;ctx.lineWidth=z>=15?2:1.2;ctx.setLineDash(z>=14?[5,4]:[]);ctx.stroke();ctx.setLineDash([]);return}
+  });
+  /* casings first, then fills, minor to major, so junctions join cleanly */
+  if(z>=13)roads.forEach(function(f){var c=ORDER[f.c];if(c=="r"&&z<14)return;path(f);ctx.strokeStyle=P.cas;ctx.lineWidth=wAt(c,z)+(z>=15?2:1.4);ctx.stroke()});
+  roads.forEach(function(f){var c=ORDER[f.c];path(f);ctx.strokeStyle=c=="m"?P.major:c=="p"?P.mid:P.road;ctx.lineWidth=wAt(c,z);if(c=="w")ctx.setLineDash([2,3]);ctx.stroke();ctx.setLineDash([])});
+  /* tram on top of the streets it runs along */
+  if(z>=12)ids.forEach(function(i){var f=F[i];if(ORDER[f.c]!="tram")return;var tw2=z>=16?3.4:z>=14?2.4:1.6;path(f);ctx.strokeStyle=P.tramInk;ctx.globalAlpha=.55;ctx.lineWidth=tw2+1.6;ctx.stroke();ctx.globalAlpha=1;ctx.strokeStyle=P.tram;ctx.lineWidth=tw2;ctx.stroke()});
+  return cv}});
+ baseLayer=new Grid({tileSize:256,keepBuffer:3,updateWhenZooming:false,maxZoom:18}).addTo(map);
+ function repaint(){P=pal();baseLayer.redraw()}
+ try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",repaint)}catch(e){}
+ try{new MutationObserver(repaint).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]})}catch(e){}
+ /* street names: one label per name, on the longest stretch, turned along the street */
+ var best={};F.forEach(function(f){var c=ORDER[f.c];if(f.n<0||!"mpst".includes(c))return;var len=0;for(var k=f.a+1;k<f.b;k++)len+=Math.hypot(X[k]-X[k-1],Y[k]-Y[k-1]);
+  if(c=="t"&&len<0.004)return;if(!best[f.n]||best[f.n].len<len)best[f.n]={f:f,len:len}});
+ Object.keys(best).forEach(function(nk){var f=best[nk].f,half=best[nk].len/2,acc=0,k=f.a+1;
+  for(;k<f.b;k++){var d=Math.hypot(X[k]-X[k-1],Y[k]-Y[k-1]);if(acc+d>=half)break;acc+=d}if(k>=f.b)k=f.b-1;
+  var t=(half-acc)/(Math.hypot(X[k]-X[k-1],Y[k]-Y[k-1])||1),mx=X[k-1]+(X[k]-X[k-1])*t,my=Y[k-1]+(Y[k]-Y[k-1])*t;
+  var ang=Math.atan2(Y[k]-Y[k-1],X[k]-X[k-1])*180/Math.PI;if(ang>90)ang-=180;if(ang<-90)ang+=180;
+  var ll=L.CRS.EPSG3857.pointToLatLng(L.point(mx,my),0),cls=ORDER[f.c]=="t"?"road minor-road":"road";
+  L.marker(ll,{interactive:false,keyboard:false,pane:"labels",icon:L.divIcon({className:"lbl "+cls,html:'<span style="transform:translate(-50%,-50%) rotate('+ang.toFixed(1)+'deg)">'+esc(j.names[nk])+'</span>',iconSize:[0,0]})}).addTo(map)});
+ (j.stops||[]).forEach(function(s,i,a){if(i&&a[i-1][2]==s[2]&&Math.abs(a[i-1][0]-s[0])<0.0005)return;
+  L.marker([s[0],s[1]],{interactive:false,keyboard:false,pane:"labels",icon:L.divIcon({className:"lbl stop",html:'<i></i><span>'+esc(s[2])+'</span>',iconSize:[0,0]})}).addTo(map)});
+ $("#mapNote").hidden=true;
+}
+/* Without the street data file (e.g. the page hosted as a plain website), use CARTO map tiles; those load everywhere except inside Claude */
+function tileBase(){var ok=false,errs=0,t=L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,attribution:'© <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'}).addTo(map);
+ var th=document.documentElement.getAttribute("data-theme");if(th?th=="dark":matchMedia("(prefers-color-scheme: dark)").matches)$("#map").classList.add("dark-tiles");
+ t.on("tileload",function(){ok=true});t.on("tileerror",function(){if(!ok&&++errs>=3){map.removeLayer(t);simpleBase()}})}
+/* Last resort: coast and area names only */
+function simpleBase(){
+ var css=getComputedStyle(document.documentElement),g=function(k){return css.getPropertyValue(k).trim()};
+ var poly=COAST.concat([[31.40,30.10],[31.40,29.87],[31.2160,29.87]]);
+ L.polygon(poly,{stroke:false,fillColor:g("--sea-soft"),fillOpacity:1,interactive:false}).addTo(map);
+ L.polyline(COAST,{color:g("--sea"),weight:1.5,opacity:.7,interactive:false}).addTo(map);
+ var nn=$("#mapNote");nn.hidden=false;nn.textContent="ما قدرتش أحمّل الشوارع، فدي خريطة مبسطة. للعنوان بالتفصيل افتح «على خرائط جوجل» من صفحة الشقة.";
+}
+function boundsOf(list){var pts=list.filter(function(x){return x.pos}).map(function(x){return x.pos});return pts.length?L.latLngBounds(pts):null}
+function fitTo(list,anim){if(!map)return;var b=boundsOf(list);if(!b)return;progMove=true;
+ if(b.getNorthEast().equals(b.getSouthWest()))map.setView(b.getCenter(),16,{animate:anim});
+ else map.fitBounds(b.pad(0.12),{animate:anim,maxZoom:16})}
+var lastMarkerList=[];
+function mkIcon(cls,html){return L.divIcon({className:"mk "+cls,html:'<div class="p">'+html+'</div>',iconSize:[0,0],iconAnchor:[0,0]})}
+function drawMarkers(list){
+ lastMarkerList=list;if(!map)return;mLayer.clearLayers();markers={};
+ if(map.getZoom()<ZOOM_PINS){
+  var z={};list.forEach(function(x){if(x.pos)(z[x.zone]=z[x.zone]||[]).push(x)});
+  Object.keys(z).forEach(function(k){var g=z[k];
+   var lat=g.reduce(function(s,x){return s+x.pos[0]},0)/g.length,lng=g.reduce(function(s,x){return s+x.pos[1]},0)/g.length;
+   var min=Math.min.apply(null,g.map(function(x){return x.price})),near=g.every(function(x){return x.near});
+   var m=L.marker([lat,lng],{icon:L.divIcon({className:"mk zone2"+(near?" near":""),html:'<div class="zb" style="--s:'+Math.round(34+Math.min(g.length,12)*1.6)+'px"><b>'+n(g.length)+'</b></div><span class="zn" style="--s:'+Math.round(34+Math.min(g.length,12)*1.6)+'px">'+esc(k)+'<small>من '+short(min)+'</small></span>',iconSize:[0,0],iconAnchor:[0,0]}),keyboard:true,title:k+": "+g.length+" شقق، من "+n(min)+" جنيه",riseOnHover:true});
+   m.on("click",function(){progMove=true;var b=boundsOf(g).pad(0.4),zz=Math.min(17,Math.max(ZOOM_PINS,map.getBoundsZoom(b)));map.flyTo(b.getCenter(),zz,{duration:.6})});
+   m.addTo(mLayer);markers["z:"+k]=m});
+ }else{
+  list.forEach(function(x){if(!x.pos)return;
+   var cls=(x.near?"near ":"")+(isFav(x.id)?"fav ":"")+(x.flag?"flag ":"");
+   var m=L.marker(x.pos,{icon:mkIcon(cls,(isFav(x.id)?"♥ ":"")+short(x.price)),keyboard:true,title:x.area+": "+n(x.price)+" جنيه",riseOnHover:true});
+   m.bindPopup(function(){return popupEl(x)},{minWidth:240,maxWidth:260,autoPanPaddingTopLeft:[16,70],autoPanPaddingBottomRight:[16,16]});
+   m.on("popupopen",function(){selMarker(x.id);progMove=true});
+   m.addTo(mLayer);markers[x.id]=m});
+ }
+}
+function popupEl(x){
+ var d=document.createElement("div");d.className="pop";
+ d.innerHTML='<div class="im">'+(x.img?'<img src="'+esc(x.img)+'" data-local="'+esc(x.local)+'" alt="" referrerpolicy="no-referrer">':'')+'<span>'+esc(x.area)+'</span></div>'+
+  '<div class="bd"><div class="t"><span>'+esc(x.area)+'</span><span>'+esc(x.host)+'</span></div>'+
+  '<div class="pr">'+n(x.price)+' <small style="font-size:12px;font-weight:500;color:var(--muted)">جنيه/شهر</small></div>'+
+  '<div class="sp">'+n(x.size)+' م² · '+roomsTxt(x.rooms)+' · '+bathTxt(x.baths)+' · '+n(Math.round(x.price/x.size))+' ج/م²</div>'+
+  (x.flag?'<div class="sp" style="color:var(--warn)">'+esc(x.flag)+'</div>':'')+
+  '<button class="btn primary" type="button">التفاصيل والتكلفة</button></div>';
+ var img=d.querySelector("img");if(img){img.addEventListener("load",function(){if(img.naturalWidth&&img.nextSibling)img.nextSibling.remove()});img.addEventListener("error",function(){img.remove()})}
+ d.querySelector("button").addEventListener("click",function(){openPanel(x.id)});
+ if(img)img.addEventListener("click",function(){openPanel(x.id)});
+ return d;
+}
+function markerEl(key){var m=markers[key];return m&&m.getElement?m.getElement():null}
+var selId=null;
+function selMarker(id){var o=markerEl(selId);if(o)o.classList.remove("sel");selId=id;var e=markerEl(id);if(e)e.classList.add("sel");
+ [].forEach.call(document.querySelectorAll(".card.hl"),function(c){c.classList.remove("hl")});
+ if(id){var c=document.querySelector('.card[data-id="'+(window.CSS&&CSS.escape?CSS.escape(id):id)+'"]');if(c)c.classList.add("hl")}}
+function hot(id,zone){[].forEach.call(document.querySelectorAll(".mk.hot"),function(e){e.classList.remove("hot")});
+ var e=markerEl(id)||markerEl("z:"+zone);if(e)e.classList.add("hot")}
+
+/* ---------- Cards ---------- */
+var IC={
+ size:'<svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 15v5h-5M4 4l7 7M20 20l-7-7"/></svg>',
+ bed:'<svg viewBox="0 0 24 24"><path d="M3 18V7M3 13h18v5M21 13a3 3 0 0 0-3-3h-7v3M7 11.5a1.5 1.5 0 1 0 0-.01"/></svg>',
+ bath:'<svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2"/></svg>',
+ heart:'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>'
+};
+function roomsTxt(r){return r==1?"غرفة":r==2?"غرفتين":n(r)+" غرف"}
+function bathTxt(b){return b==2?"حمامين":b>2?n(b)+" حمامات":"حمام"}
+var IC_HOME='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6M3 21h18"/></svg>';
+function card(x){
+ var ppm=Math.round(x.price/x.size);
+ return '<article class="card" data-id="'+esc(x.id)+'" data-area="'+esc(x.zone)+'">'+
+  '<div class="photo" data-open="'+esc(x.id)+'">'+
+   '<div class="ph">'+IC_HOME+'<b>'+esc(x.area)+'</b><small>الصور في الإعلان الأصلي</small>'+(x.url?'<a class="seephotos" href="'+esc(x.url)+'" target="_blank" rel="noopener">شوف الصور على '+esc(x.host)+' ↗</a>':'')+'</div>'+
+   (x.img?'<img src="'+esc(x.img)+'" data-local="'+esc(x.local)+'" alt="صورة شقة '+esc(x.area)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer">':'')+
+   '<div class="shade"></div>'+
+   '<div class="tags">'+(x.mine?'<span class="badge mine">لقيتها لك</span>':x.isNew?'<span class="badge new">جديد</span>':'')+
+   (x.near?'<span class="badge near">قريب من النطاق</span>':'')+(x.was?'<span class="badge warn">السعر اتغير</span>':'')+(x.flag?'<span class="badge warn">غالباً اتأجرت</span>':'')+'</div>'+
+   '<button class="fav" data-fav="'+esc(x.id)+'" aria-pressed="'+isFav(x.id)+'" aria-label="'+(isFav(x.id)?"شيل من المفضلة":"احفظ في المفضلة")+'">'+IC.heart+'</button>'+
+   '<div class="pricetag num">'+(x.was?'<s>'+n(x.was)+'</s>':'')+'<b>'+n(x.price)+'</b><span>جنيه / شهر</span></div>'+
+  '</div>'+
+  '<div class="cbody" data-open="'+esc(x.id)+'" role="button" tabindex="0" aria-label="تفاصيل شقة '+esc(x.area)+' '+n(x.price)+' جنيه">'+
+   '<div class="ttl"><h3>شقة في '+esc(x.area)+'</h3><span class="host">'+esc(x.host)+'</span></div>'+
+   (x.address?'<p class="addr">'+esc(x.address)+'</p>':'')+
+   '<ul class="facts num"><li>'+IC.size+n(x.size)+' م²</li><li>'+IC.bed+roomsTxt(x.rooms)+'</li><li>'+IC.bath+bathTxt(x.baths)+'</li><li class="ppm2">'+n(ppm)+' ج/م²</li></ul>'+
+  '</div>'+
+  '<div class="actions"><button class="btn primary" data-open="'+esc(x.id)+'">التفاصيل والتكلفة</button>'+
+   (x.url?'<a class="btn ghost" href="'+esc(x.url)+'" target="_blank" rel="noopener" aria-label="افتح الإعلان على '+esc(x.host)+'" title="افتح الإعلان على '+esc(x.host)+'">الإعلان ↗</a>':'')+
+   '<a class="btn wa" data-wa="'+esc(x.id)+'" href="'+esc(waTarget(x))+'" target="_blank" rel="noopener" aria-label="اسأل المعلن على واتساب: لسه متاحة؟">واتساب</a></div>'+
+ '</article>';
+}
+function wireImages(root){[].forEach.call(root.querySelectorAll(".photo img"),function(img){
+ function ok(){if(img.naturalWidth>0)img.parentNode.classList.add("loaded")}
+ function bad(){var u=img.getAttribute("src")||"";if(img.dataset.local&&u!=img.dataset.local){img.src=img.dataset.local;return}var alt=/thumbnails\/\d+-\d+x\d+\./.test(u)&&!img.dataset.retry?u.replace(/-\d+x\d+\./,u.indexOf("-800x600.")>-1?"-400x300.":"-800x600."):"";if(alt){img.dataset.retry=1;img.src=alt}else img.remove()}
+ img.addEventListener("load",ok);img.addEventListener("error",bad);if(img.complete){img.naturalWidth?ok():bad()}
+})}
+
+/* ---------- Render ---------- */
+function render(){
+ var base=baseFiltered(),areaList=base.filter(function(x){return!state.area||x.zone==state.area}),
+     list=sorted(areaList.filter(function(x){return!state.bounds||(x.pos&&state.bounds.contains(x.pos))}));
+ var prices=list.map(function(x){return x.price});
+ countTo($("#sCount"),list.length);
+ countTo($("#sMin"),list.length?Math.min.apply(null,prices):null);
+ countTo($("#sMed"),list.length?Math.round(median(prices)):null);
+ countTo($("#sPpm"),list.length?Math.round(list.reduce(function(s,x){return s+x.price/x.size},0)/list.length):null);
+ var groups={};data.forEach(function(x){groups[x.zone]=1});
+ drawMarkers(areaList);if(selId&&markers[selId]&&!markers[selId].isPopupOpen())selId=null;
+ var counts={};base.forEach(function(x){counts[x.zone]=(counts[x.zone]||0)+1});
+ var zones=Object.keys(groups).sort(function(a,b){return(counts[b]||0)-(counts[a]||0)});
+ $("#areas").innerHTML='<button class="chip" aria-pressed="'+(!state.area)+'" data-a="">كل المناطق<b class="num">'+n(base.length)+'</b></button>'+
+  zones.map(function(a){return'<button class="chip" aria-pressed="'+(state.area==a)+'" data-a="'+esc(a)+'">'+esc(a)+'<b class="num">'+n(counts[a]||0)+'</b></button>'}).join("");
+ $("#resTitle").textContent=state.bounds?"الشقق في منطقة الخريطة":state.area?("شقق "+state.area):"كل الشقق";
+ $("#grid").innerHTML=list.length?list.map(card).join(""):'<div class="empty">مفيش شقق بالفلاتر دي.<br><button class="btn" id="emptyReset" style="margin-top:10px">مسح الفلاتر</button></div>';
+ wireImages($("#grid"));
+ $("#reset").hidden=!(state.area||state.bounds||state.rooms||state.onlyNew||state.onlyFav||state.max<15000);
+ $("#fMax").value=state.max;$("#fMaxOut").textContent=n(state.max);
+ [].forEach.call(document.querySelectorAll("#fRooms button"),function(b){b.setAttribute("aria-pressed",+b.dataset.v==state.rooms)});
+ $("#fNew").checked=state.onlyNew;$("#fSort").value=state.sort;
+ $("#favN").textContent=n(state.fav.length);$("#fFav").setAttribute("aria-pressed",state.onlyFav);
+ var er=$("#emptyReset");if(er)er.addEventListener("click",reset);
+ renderCompare();save();
+}
+function reset(){state.bounds=null;$("#searchHere").hidden=true;state.area=null;state.rooms=0;state.onlyNew=false;state.onlyFav=false;state.max=15000;render();fitTo(data,true)}
+function renderCompare(){
+ var list=data.filter(function(x){return isFav(x.id)});
+ $("#compare").hidden=list.length<2;if(list.length<2)return;
+ var minP=Math.min.apply(null,list.map(function(x){return x.price})),maxS=Math.max.apply(null,list.map(function(x){return x.size})),
+     minM=Math.min.apply(null,list.map(function(x){return x.price/x.size})),minE=Math.min.apply(null,list.map(entryCost));
+ $("#cmpTbl").innerHTML='<table class="num"><thead><tr><th>الشقة</th><th>الإيجار</th><th>المساحة</th><th>جنيه/م²</th><th>الغرف</th><th>تكلفة الدخول</th></tr></thead><tbody>'+
+  list.map(function(x){return'<tr><td>'+esc(x.area)+'</td><td class="'+(x.price==minP?"best":"")+'">'+n(x.price)+'</td><td class="'+(x.size==maxS?"best":"")+'">'+n(x.size)+' م²</td><td class="'+(x.price/x.size==minM?"best":"")+'">'+n(Math.round(x.price/x.size))+'</td><td>'+n(x.rooms)+'</td><td class="'+(entryCost(x)==minE?"best":"")+'">'+n(entryCost(x))+'</td></tr>'}).join("")+'</tbody></table>';
+}
+
+
+/* ---------- Saved bits, WhatsApp message, change tracking ---------- */
+function lsGet(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function waNum(v){var d=String(v||"").replace(/[٠-٩]/g,function(c){return"٠١٢٣٤٥٦٧٨٩".indexOf(c)}).replace(/\D/g,"");if(!d)return"";if(d.indexOf("00")==0)d=d.slice(2);
+ if(d.indexOf("20")==0&&d.length>=12)return d;if(d[0]=="0")return"20"+d.slice(1);if(d.length==10&&d[0]=="1")return"20"+d;return d}
+function waHref(num,msg){return"https://wa.me/"+num+"?text="+encodeURIComponent(msg)}
+function phoneOf(x){var m=lsGet("alexph",{});return m[x.id]||x.phone||""}
+/* the whole message: is it still available + the ad link */
+function askMsg(x){return"السلام عليكم، الشقة دي لسه متاحة؟"+(x.url?"\n"+x.url:"")}
+/* with the advertiser's number: straight to their WhatsApp chat. Without it: the ad itself, where its own WhatsApp/Call button is */
+function waTarget(x){var num=waNum(phoneOf(x));return num?waHref(num,askMsg(x)):(x.url||"#")}
+function copyText(t,done){var fb=function(){var ta=document.createElement("textarea");ta.value=t;ta.style.cssText="position:fixed;opacity:0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(e){}ta.remove();done()};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fb);else fb()}
+/* what the page saw last time: new ads and price changes show up as badges */
+var SEEN=lsGet("alexseen",null);
+function applySeen(list){if(!SEEN||!SEEN.ids)return list;list.forEach(function(x){var o=SEEN.ids[x.id];if(o==null){x.isNew=true;x.fresh=true}else if(o!==x.price){x.was=o}});return list}
+function saveSeen(list){var ids={};list.forEach(function(x){ids[x.id]=x.price});lsSet("alexseen",{t:Date.now(),ids:ids})}
+function showChanges(c){var box=$("#changes");if(!c||(!c.added.length&&!c.price.length&&!c.removed.length)){box.hidden=true;return}
+ var rows=[];c.added.forEach(function(x){rows.push('<li><span>جديدة</span>'+esc(x.area)+' · '+n(x.price)+' جنيه</li>')});
+ c.price.forEach(function(x){rows.push('<li><span>السعر اتغير</span>'+esc(x.area)+' · '+n(x.was)+' ← '+n(x.price)+'</li>')});
+ c.removed.forEach(function(x){rows.push('<li class="del"><span>اتشالت</span>'+esc(x.area)+' · '+n(x.price)+' جنيه</li>')});
+ var more=rows.length>10?rows.length-10:0;
+ box.innerHTML='<b>ملخص التحديث</b><ul>'+rows.slice(0,10).join("")+'</ul>'+(more?'<p class="hint" style="color:inherit">و '+n(more)+' تغيير كمان</p>':'')+'<button class="linkbtn" id="chgX" type="button">إخفاء</button>';
+ box.hidden=false;$("#chgX").addEventListener("click",function(){box.hidden=true})}
+function askHtml(x){var ph=phoneOf(x);
+ return'<div class="psec ask"><h3>اسأل المعلن</h3>'+
+  '<p class="askmsg" id="aPre"></p>'+
+  '<label class="fl" for="aPhone">رقم المعلن على واتساب</label><input id="aPhone" type="tel" inputmode="tel" dir="ltr" autocomplete="off" value="'+esc(ph)+'" placeholder="01xxxxxxxxx">'+
+  '<p class="hint">الرقم بيظهر في الإعلان الأصلي بعد ما تدوس «Call». اكتبه مرة وهيتحفظ للشقة دي. من غيره الزرار بيفتح الإعلان وبينسخ الرسالة.</p>'+
+  '<div class="askact"><a class="btn wa" id="aWa" href="#" target="_blank" rel="noopener">واتساب</a><button class="btn" id="aCopy" type="button">انسخ الرسالة</button></div></div>'}
+function wireAsk(x){
+ var wa=$("#aWa");$("#aPre").textContent=askMsg(x);
+ function sync(){var num=waNum($("#aPhone").value);wa.href=num?waHref(num,askMsg(x)):(x.url||"#");wa.textContent=num?"ابعت واتساب: لسه متاحة؟":"افتح الإعلان وانسخ الرسالة";wa.dataset.num=num}
+ $("#aPhone").addEventListener("input",function(e){var m=lsGet("alexph",{});if(e.target.value.trim())m[x.id]=e.target.value.trim();else delete m[x.id];lsSet("alexph",m);sync()});
+ wa.addEventListener("click",function(){if(!wa.dataset.num)copyText(askMsg(x),function(){toast("اتنسخت الرسالة. الصقها في واتساب المعلن")})});
+ $("#aCopy").addEventListener("click",function(){copyText(askMsg(x),function(){toast("اتنسخت الرسالة")})});
+ sync()}
+
+/* ---------- Detail panel ---------- */
+var lastFocus=null,openId=null;
+function openPanel(id){
+ var x=data.filter(function(d){return d.id==id})[0];if(!x)return;
+ openId=id;if(!$("#panel").contains(document.activeElement))lastFocus=document.activeElement;
+ var ppm=x.price/x.size,same=data.filter(function(d){return d.zone==x.zone}),
+     areaPpm=same.reduce(function(s,d){return s+d.price/d.size},0)/same.length,
+     allPpm=data.reduce(function(s,d){return s+d.price/d.size},0)/data.length,
+     top=Math.max(ppm,areaPpm,allPpm)*1.08,diff=Math.round((ppm-allPpm)/allPpm*100);
+ var c={advance:x.adv!=null?x.adv:calc.advance,deposit:x.dep!=null?x.dep:calc.deposit,broker:x.bro!=null?x.bro*100:calc.broker};
+ function row(lbl,v,me){return'<div class="row'+(me?" me":"")+'"><span>'+lbl+'</span><div class="bar"><i style="width:'+Math.round(v/top*100)+'%"></i></div><b class="num">'+n(Math.round(v))+'</b></div>'}
+ var p=$("#panel");
+ p.innerHTML='<div class="grab" aria-hidden="true"></div><div class="ptop"><h2 id="pTitle">'+esc(x.area)+'</h2><button class="x" id="pClose" aria-label="قفل">✕</button></div>'+
+  '<div class="pimg" id="pImg">'+(x.img?'<img src="'+esc(x.img)+'" data-local="'+esc(x.local)+'" alt="صورة شقة '+esc(x.area)+'" referrerpolicy="no-referrer">':'')+'<span>الصور كاملة في الإعلان على '+esc(x.host)+'</span></div>'+
+  (x.flag?'<div class="psec" style="border-color:var(--warn)"><p style="margin:0;color:var(--warn);font-weight:600">'+esc(x.flag)+'. كلّم المعلن قبل ما تروح.</p></div>':'')+
+  '<div class="psec"><div class="price num">'+n(x.price)+'<small>جنيه / شهر</small></div>'+
+  '<div class="specs num"><span>'+IC.size+n(x.size)+' م²</span><span>'+IC.bed+(x.roomsNote||roomsTxt(x.rooms))+'</span><span>'+IC.bath+bathTxt(x.baths)+'</span></div>'+
+  (x.address||x.extras.length?'<ul style="margin-top:10px">'+(x.address?'<li>'+esc(x.address)+'</li>':'')+x.extras.filter(function(l){return l.indexOf(x.address)<0}).map(function(l){return'<li>'+esc(l)+'</li>'}).join("")+'</ul>':'')+'</div>'+
+  '<div class="psec"><h3>سعر المتر مقارنة بغيرها (جنيه/م²)</h3><div class="cmp">'+
+   row("الشقة دي",ppm,true)+(same.length>1?row("متوسط "+x.zone,areaPpm):"")+row("متوسط الكل",allPpm)+'</div>'+
+   '<p class="verdict '+(diff<=-5?"good":diff>=5?"bad":"")+'">'+(diff<=-5?"أرخص من المتوسط بـ "+n(-diff)+"٪ في المتر":diff>=5?"أغلى من المتوسط بـ "+n(diff)+"٪ في المتر":"في حدود المتوسط")+'</p></div>'+
+  '<div class="psec"><h3>تكلفة الدخول</h3>'+(x.terms?'<p class="hint" style="margin:0 0 10px;color:var(--ink)">حسب الإعلان: '+esc(x.terms)+'</p>':'')+'<div class="calc">'+
+   '<label for="cAdv">إيجار مقدم (شهور)<input type="number" id="cAdv" min="0" max="12" value="'+c.advance+'"></label>'+
+   '<label for="cDep">تأمين (شهور)<input type="number" id="cDep" min="0" max="12" value="'+c.deposit+'"></label>'+
+   '<label for="cBro">عمولة (٪ من شهر)<input type="number" id="cBro" min="0" max="200" step="25" value="'+c.broker+'"></label>'+
+   '<div class="total"><span>المطلوب وقت الاستلام</span><b class="num" id="cTot"></b></div>'+
+   '<p class="hint">الأرقام متظبطة على شروط الإعلان لو مكتوبة. غيّرها حسب اتفاقك.</p></div></div>'+
+  askHtml(x)+'<div class="pact"><button class="btn" id="pFav">'+(isFav(x.id)?"♥ محفوظة":"♡ احفظ في المفضلة")+'</button>'+
+   (x.url?'<a class="btn primary" href="'+esc(x.url)+'" target="_blank" rel="noopener">افتح الإعلان على '+esc(x.host)+' ↗</a>':'')+
+   '<a class="btn" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((x.lat&&x.lng&&x.precise)?(x.lat+","+x.lng):(x.address+"، "+x.area+"، الإسكندرية"))+'" target="_blank" rel="noopener">على خرائط جوجل</a></div>';
+ var pi=$("#pImg img");if(pi){pi.addEventListener("load",function(){if(pi.naturalWidth)pi.nextSibling.remove()});pi.addEventListener("error",function(){pi.remove()})}
+ function tot(){calc.advance=+$("#cAdv").value||0;calc.deposit=+$("#cDep").value||0;calc.broker=+$("#cBro").value||0;
+  $("#cTot").textContent=n(Math.round(x.price*(calc.advance+calc.deposit+calc.broker/100)))+" جنيه"}
+ ["#cAdv","#cDep","#cBro"].forEach(function(s){$(s).addEventListener("input",tot)});tot();
+ $("#pClose").addEventListener("click",closePanel);
+ $("#pFav").addEventListener("click",function(){toggleFav(x.id);openPanel(x.id)});
+ wireAsk(x);
+ clearTimeout(closeT);p.classList.remove("closing");$("#scrim").classList.remove("closing");p.style.transform="";
+ p.hidden=false;$("#scrim").hidden=false;p.scrollTop=0;$("#pClose").focus();
+}
+var closeT=null;
+function closePanel(){var p=$("#panel"),s=$("#scrim");if(p.hidden)return;openId=null;
+ function done(){p.hidden=true;s.hidden=true;p.classList.remove("closing");s.classList.remove("closing");p.style.transform="";p.style.transition="";if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+ if(RM){done();return}
+ p.style.transition="";p.style.transform="";p.classList.add("closing");s.classList.add("closing");clearTimeout(closeT);closeT=setTimeout(done,230)}
+function toggleFav(id){id=String(id);var i=state.fav.indexOf(id);if(i>-1)state.fav.splice(i,1);else state.fav.push(id);if(state.onlyFav&&!state.fav.length)state.onlyFav=false;render()}
+
+/* ---------- Events ---------- */
+$("#scrim").addEventListener("click",closePanel);
+document.addEventListener("keydown",function(e){if(e.key=="Escape"&&openId!=null)closePanel()});
+$("#grid").addEventListener("click",function(e){
+ var f=e.target.closest("[data-fav]");if(f){toggleFav(f.dataset.fav);return}
+ var w=e.target.closest("[data-wa]");if(w){if(!waNum(phoneOf(data.filter(function(d){return d.id==w.dataset.wa})[0]||{}))){var wx=data.filter(function(d){return d.id==w.dataset.wa})[0];if(wx)copyText(askMsg(wx),function(){toast("اتنسخت الرسالة. الصقها في واتساب المعلن")})}return}
+ if(e.target.closest("a"))return;
+ var o=e.target.closest("[data-open]");if(o)openPanel(o.dataset.open);
+});
+$("#grid").addEventListener("keydown",function(e){var o=e.target.closest(".cbody[data-open]");if(o&&(e.key=="Enter"||e.key==" ")){e.preventDefault();openPanel(o.dataset.open)}});
+$("#grid").addEventListener("mouseover",function(e){var c=e.target.closest(".card");hot(c?c.getAttribute("data-id"):null,c?c.getAttribute("data-area"):null)});
+$("#grid").addEventListener("mouseleave",function(){hot(null,null)});
+$("#grid").addEventListener("focusin",function(e){var c=e.target.closest(".card");hot(c?c.getAttribute("data-id"):null,c?c.getAttribute("data-area"):null)});
+$("#searchHere").addEventListener("click",function(){state.bounds=map.getBounds();state.area=null;$("#searchHere").hidden=true;render();$("#grid").scrollIntoView({behavior:"smooth",block:"start"})});
+var mapHome=null;
+function setFull(on){var w=$(".mapwrap");if(w.classList.contains("full")===on)return;
+ if(on){mapHome=document.createElement("div");mapHome.style.height=w.offsetHeight+"px";w.parentNode.insertBefore(mapHome,w);document.body.appendChild(w)}
+ else if(mapHome){mapHome.parentNode.replaceChild(w,mapHome);mapHome=null}
+ w.classList.toggle("full",on);document.body.classList.toggle("mapfull",on);$("#mClose").hidden=!on;$("#mFit").hidden=on;
+ setTimeout(function(){if(!map)return;map.invalidateSize();if(on)fitTo(lastMarkerList.length?lastMarkerList:data,false)},80)}
+$("#mFit").addEventListener("click",function(){state.bounds=null;$("#searchHere").hidden=true;render();setFull(true);fitTo(lastMarkerList.length?lastMarkerList:data,true)});
+$("#mClose").addEventListener("click",function(){setFull(false)});
+$("#mFull").addEventListener("click",function(){state.bounds=null;$("#searchHere").hidden=true;render();setFull(true)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$("#panel").hidden&&$(".mapwrap").classList.contains("full"))setFull(false)},true);
+$("#mTall").addEventListener("click",function(){var m=$("#map");m.classList.toggle("tall");this.setAttribute("aria-label",m.classList.contains("tall")?"صغّر الخريطة":"كبّر الخريطة");setTimeout(function(){map&&map.invalidateSize()},280)});
+$("#fMax").addEventListener("input",function(e){state.max=+e.target.value;render()});
+$("#fRooms").addEventListener("click",function(e){var b=e.target.closest("button");if(b){state.rooms=+b.dataset.v;render()}});
+$("#fNew").addEventListener("change",function(e){state.onlyNew=e.target.checked;render()});
+$("#fFav").addEventListener("click",function(){if(!state.fav.length&&!state.onlyFav)return;state.onlyFav=!state.onlyFav;render()});
+$("#fSort").addEventListener("change",function(e){state.sort=e.target.value;render()});
+$("#areas").addEventListener("click",function(e){var b=e.target.closest(".chip");if(b){state.area=b.dataset.a||null;state.bounds=null;$("#searchHere").hidden=true;render();fitTo(state.area?lastMarkerList:data,true)}});
+$("#reset").addEventListener("click",reset);
+$("#refresh").addEventListener("click",function(){refresh(true)});
+
+/* ---------- Motion & interaction ---------- */
+var RM=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
+function countTo(el,v){cancelAnimationFrame(el._r);
+ if(v==null){el.textContent="—";el._v=null;return}
+ var from=el._v;el._v=v;
+ if(RM||from==null||from===v){el.textContent=n(v);return}
+ var t0=performance.now(),d=550;
+ (function step(t){var k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent=n(Math.round(from+(v-from)*e));if(k<1)el._r=requestAnimationFrame(step)})(t0)}
+var shownIds={},bumpId=null;
+var _render=render;
+render=function(){_render();
+ var next={},i=0;
+ [].forEach.call($("#grid").querySelectorAll(".card"),function(c){var id=c.getAttribute("data-id");next[id]=1;
+  if(!shownIds[id]&&!RM){c.classList.add("enter");c.style.setProperty("--i",Math.min(i++,10))}});
+ shownIds=next;
+ if(bumpId){[].forEach.call($("#grid").querySelectorAll("[data-fav]"),function(f){if(f.getAttribute("data-fav")===bumpId)f.classList.add("bump")});bumpId=null}
+};
+var toastT=null;
+function toast(t){var e=$("#toast");e.textContent=t;e.classList.add("show");clearTimeout(toastT);toastT=setTimeout(function(){e.classList.remove("show")},1800)}
+var _tf=toggleFav;
+toggleFav=function(id){var was=isFav(id);bumpId=String(id);_tf(id);toast(was?"اتشالت من المفضلة":"اتحفظت في المفضلة ♥")};
+/* Sticky filter shadow */
+if(window.IntersectionObserver){
+ new IntersectionObserver(function(es){es.forEach(function(e){$(".filters").classList.toggle("stuck",!e.isIntersecting&&e.boundingClientRect.top<0)})}).observe($("#fSentinel"));
+ var fab=$("#fab");
+ new IntersectionObserver(function(es){es.forEach(function(e){var on=!e.isIntersecting&&e.boundingClientRect.top<0;fab.classList.toggle("show",on);fab.tabIndex=on?0:-1})}).observe($(".mapcard"));
+ fab.addEventListener("click",function(){setFull(true)});
+}
+/* Swipe the detail sheet down to close it (phones) */
+(function(){var p=$("#panel"),y0=null,dy=0;
+ p.addEventListener("touchstart",function(e){if(innerWidth>640||p.scrollTop>0||e.target.closest("input,select,a,button"))return;y0=e.touches[0].clientY;dy=0;p.style.transition="none"},{passive:true});
+ p.addEventListener("touchmove",function(e){if(y0==null)return;dy=e.touches[0].clientY-y0;if(dy>0){e.preventDefault();p.style.transform="translateY("+dy+"px)"}else{y0=null;p.style.transform="";p.style.transition=""}},{passive:false});
+ p.addEventListener("touchend",function(){if(y0==null)return;y0=null;p.style.transition="";if(dy>110)closePanel();else p.style.transform=""});
+})();
+
+applySeen(data);placeAll(data);initMap();render();setStatus();saveSeen(data);
+/* On a normal website (no Claude viewer), read the sheet right away and every minute after. */
+mcpP.then(function(m){if(!m&&!(window.claude&&window.claude.use)){refresh(false);setInterval(function(){if(!document.hidden)refresh(false)},60000)}});
+})();
+</script>
+
+</body></html>
