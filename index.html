@@ -443,6 +443,11 @@ header.top.hero{margin-top:12px;border-radius:26px;padding:26px 24px 0}
 .lbl.stop i{position:absolute;left:0;top:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--tram);border:1.5px solid var(--tram-ink)}
 .lbl.stop span{transform:translate(-50%,7px);font:600 10.5px/1 var(--f-body);color:var(--tram-ink);background:color-mix(in srgb,var(--tram) 85%,transparent);padding:2px 5px;border-radius:5px;text-shadow:none}
 .lbl.minor span{font-size:12.5px}
+.src{--src:#58707a;display:inline-flex;align-items:center;gap:5px;flex:none;padding:3px 10px 3px 4px;border-radius:999px;font:700 11.5px/1.2 var(--f-body);color:#fff;background:var(--src);white-space:nowrap;vertical-align:middle}
+.src i{font-style:normal;display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:#fff;color:var(--src);font:800 10.5px/1 var(--f-body)}
+.src-dz{--src:#d32f2f}.src-pf{--src:#ad1457}.src-by{--src:#1e8e5a}.src-fb{--src:#1877f2}
+.photo .tags .src{box-shadow:0 1px 4px rgba(0,0,0,.3)}
+#pTitle .src{font-size:12px;margin-inline-start:8px}
 .legend .tl{display:inline-block;width:22px;height:4px;border-radius:2px;background:var(--tram);box-shadow:0 0 0 1px color-mix(in srgb,var(--tram-ink) 55%,transparent)}
 </style>
 
@@ -892,7 +897,7 @@ function drawMarkers(list){
 function popupEl(x){
  var d=document.createElement("div");d.className="pop";
  d.innerHTML='<div class="im">'+(x.img?'<img src="'+esc(x.img)+'" data-local="'+esc(x.local)+'" alt="" referrerpolicy="no-referrer">':'')+'<span>'+esc(x.area)+'</span></div>'+
-  '<div class="bd"><div class="t"><span>'+esc(x.area)+'</span><span>'+esc(x.host)+'</span></div>'+
+  '<div class="bd"><div class="t"><span>'+esc(x.area)+'</span>'+srcB(x)+'</div>'+
   '<div class="pr">'+n(x.price)+' <small style="font-size:12px;font-weight:500;color:var(--muted)">جنيه/شهر</small></div>'+
   '<div class="sp">'+n(x.size)+' م² · '+roomsTxt(x.rooms)+' · '+bathTxt(x.baths)+' · '+n(Math.round(x.price/x.size))+' ج/م²</div>'+
   (x.flag?'<div class="sp" style="color:var(--warn)">'+esc(x.flag)+'</div>':'')+
@@ -920,6 +925,8 @@ var IC={
 function roomsTxt(r){return r==1?"غرفة":r==2?"غرفتين":n(r)+" غرف"}
 function bathTxt(b){return b==2?"حمامين":b>2?n(b)+" حمامات":"حمام"}
 var IC_HOME='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6M3 21h18"/></svg>';
+var SRCK={"دوبيزل":"dz","بروبرتي فايندر":"pf","بيوت":"by","فيسبوك":"fb"},SRCI={dz:"D",pf:"PF",by:"B",fb:"f"};
+function srcB(x){var k=SRCK[x.host]||"ot";return'<span class="src src-'+k+'" title="المصدر: '+esc(x.host)+'"><i>'+(SRCI[k]||"↗")+'</i>'+esc(x.host)+'</span>'}
 function card(x){
  var ppm=Math.round(x.price/x.size);
  return '<article class="card" data-id="'+esc(x.id)+'" data-area="'+esc(x.zone)+'">'+
@@ -927,13 +934,13 @@ function card(x){
    '<div class="ph">'+IC_HOME+'<b>'+esc(x.area)+'</b><small>الصور في الإعلان الأصلي</small>'+(x.url?'<a class="seephotos" href="'+esc(x.url)+'" target="_blank" rel="noopener">شوف الصور على '+esc(x.host)+' ↗</a>':'')+'</div>'+
    (x.img?'<img src="'+esc(x.img)+'" data-local="'+esc(x.local)+'" alt="صورة شقة '+esc(x.area)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer">':'')+
    '<div class="shade"></div>'+
-   '<div class="tags">'+(x.mine?'<span class="badge mine">لقيتها لك</span>':x.isNew?'<span class="badge new">جديد</span>':'')+
+   '<div class="tags">'+srcB(x)+(x.mine?'<span class="badge mine">لقيتها لك</span>':x.isNew?'<span class="badge new">جديد</span>':'')+
    (x.near?'<span class="badge near">قريب من النطاق</span>':'')+(x.was?'<span class="badge warn">السعر اتغير</span>':'')+(x.flag?'<span class="badge warn">غالباً اتأجرت</span>':'')+'</div>'+
    '<button class="fav" data-fav="'+esc(x.id)+'" aria-pressed="'+isFav(x.id)+'" aria-label="'+(isFav(x.id)?"شيل من المفضلة":"احفظ في المفضلة")+'">'+IC.heart+'</button>'+
    '<div class="pricetag num">'+(x.was?'<s>'+n(x.was)+'</s>':'')+'<b>'+n(x.price)+'</b><span>جنيه / شهر</span></div>'+
   '</div>'+
   '<div class="cbody" data-open="'+esc(x.id)+'" role="button" tabindex="0" aria-label="تفاصيل شقة '+esc(x.area)+' '+n(x.price)+' جنيه">'+
-   '<div class="ttl"><h3>شقة في '+esc(x.area)+'</h3><span class="host">'+esc(x.host)+'</span></div>'+
+   '<div class="ttl"><h3>شقة في '+esc(x.area)+'</h3>'+srcB(x)+'</div>'+
    (x.address?'<p class="addr">'+esc(x.address)+'</p>':'')+
    '<ul class="facts num"><li>'+IC.size+n(x.size)+' م²</li><li>'+IC.bed+roomsTxt(x.rooms)+'</li><li>'+IC.bath+bathTxt(x.baths)+'</li><li class="ppm2">'+n(ppm)+' ج/م²</li></ul>'+
   '</div>'+
@@ -1035,7 +1042,7 @@ function openPanel(id){
  var c={advance:x.adv!=null?x.adv:calc.advance,deposit:x.dep!=null?x.dep:calc.deposit,broker:x.bro!=null?x.bro*100:calc.broker};
  function row(lbl,v,me){return'<div class="row'+(me?" me":"")+'"><span>'+lbl+'</span><div class="bar"><i style="width:'+Math.round(v/top*100)+'%"></i></div><b class="num">'+n(Math.round(v))+'</b></div>'}
  var p=$("#panel");
- p.innerHTML='<div class="grab" aria-hidden="true"></div><div class="ptop"><h2 id="pTitle">'+esc(x.area)+'</h2><button class="x" id="pClose" aria-label="قفل">✕</button></div>'+
+ p.innerHTML='<div class="grab" aria-hidden="true"></div><div class="ptop"><h2 id="pTitle">'+esc(x.area)+' '+srcB(x)+'</h2><button class="x" id="pClose" aria-label="قفل">✕</button></div>'+
   '<div class="pimg" id="pImg">'+(x.img?'<img src="'+esc(x.img)+'" data-local="'+esc(x.local)+'" alt="صورة شقة '+esc(x.area)+'" referrerpolicy="no-referrer">':'')+'<span>الصور كاملة في الإعلان على '+esc(x.host)+'</span></div>'+
   (x.flag?'<div class="psec" style="border-color:var(--warn)"><p style="margin:0;color:var(--warn);font-weight:600">'+esc(x.flag)+'. كلّم المعلن قبل ما تروح.</p></div>':'')+
   '<div class="psec"><div class="price num">'+n(x.price)+'<small>جنيه / شهر</small></div>'+
