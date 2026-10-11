@@ -667,7 +667,7 @@ function norm(r,firstBatch){
  var price=toNum(r.price);if(!price)return null;
  var det=String(r.details||""),terms=String(r.terms||""),line0=det.split("\n")[0];
  var sz=line0.match(/([\d٠-٩]+)\s*م²/),rm=(line0.match(/🛏\s*([^·\n]+)/)||[])[1]||"",bt=(line0.match(/🛁\s*([^·\n]+)/)||[])[1]||"";
- var src=String(r.source_url||""),host=/dubizzle/.test(src)?"دوبيزل":/propertyfinder/.test(src)?"بروبرتي فايندر":/bayut/.test(src)?"بيوت":"الإعلان";
+ var src=String(r.source_url||""),host=/dubizzle/.test(src)?"دوبيزل":/propertyfinder/.test(src)?"بروبرتي فايندر":/bayut/.test(src)?"بيوت":/facebook/.test(src)?"فيسبوك":"الإعلان";
  var area=String(r.area||"").trim(),zone=/^شدس/.test(area)?"شدس":area;
  var lat=toNum(r.latitude),lng=toNum(r.longitude);
  var extras=det.split("\n").slice(1).filter(function(l){return l&&l.indexOf("⌖")!==0}).map(function(l){return l.replace(/^[📍✅🛗🪜🌊🔗]\s*/u,"")});
