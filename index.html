@@ -724,7 +724,10 @@ function refresh(manual){
   var old={};data.forEach(function(x){old[x.id]=x});var cur={};list.forEach(function(x){cur[x.id]=1});
   var c={added:[],price:[],removed:data.filter(function(x){return!cur[x.id]})};
   list.forEach(function(x){var o=old[x.id];if(!o){x.isNew=true;x.fresh=true;c.added.push(x)}else{x.fresh=o.fresh;x.was=o.was;if(o.price!==x.price){x.was=o.price;c.price.push(x)}}});
-  placeAll(list);data=list;live=true;lastSync=new Date().toISOString();render();setStatus();saveSeen(list);
+  var same=!c.added.length&&!c.price.length&&!c.removed.length&&live;
+  live=true;lastSync=new Date().toISOString();
+  if(!same||manual){placeAll(list);data=list;render();saveSeen(list)}
+  setStatus();
   if(manual){showChanges(c);say(c.added.length||c.price.length||c.removed.length?"اتحدّث · "+n(list.length)+" شقة":"اتحدّث · "+n(list.length)+" شقة · مفيش تغيير من آخر مرة")}
  }).catch(function(e){
   var c=e&&e.code;
